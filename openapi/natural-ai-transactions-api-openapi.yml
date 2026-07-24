@@ -1,0 +1,2947 @@
+openapi: 3.1.1
+info:
+  title: Natural Agent Keys Transactions API
+  version: 0.2.0
+  description: 'Natural''s payments API for autonomous agents.
+
+
+    **Base URL:** `https://api.natural.com`
+
+
+    AI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.
+
+
+    For support: support@natural.com'
+servers:
+- url: https://api.natural.com
+  description: Production
+tags:
+- name: Transactions
+  description: Transaction activity and history
+paths:
+  /transactions:
+    get:
+      operationId: transactions.list
+      summary: List transactions
+      description: List transactions
+      tags:
+      - Transactions
+      parameters:
+      - name: type
+        in: query
+        schema:
+          enum:
+          - payment
+          - transfer
+          - all
+          type: string
+          default: all
+          description: Filter by transaction type.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+          description: Maximum results per page.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          maxLength: 1024
+          description: Cursor from the previous page.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: counterpartyPartyId
+        in: query
+        schema:
+          type: string
+          pattern: ^pty_[0-9a-f]{32}$
+          description: Restrict results to transactions whose payment counterparty is this party.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: walletId
+        in: query
+        schema:
+          type: string
+          pattern: ^wal_[0-9a-f]{32}$
+          description: Restrict results to transactions visible through this wallet.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: customerPartyId
+        in: query
+        schema:
+          type: string
+          pattern: ^pty_[0-9a-f]{32}$
+          description: Restrict results to delegated activity performed for this customer, not activity involving it as a payment counterparty.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: delegated
+        in: query
+        schema:
+          type: boolean
+          description: When true, return only transactions executed through an agent delegation (your connection-scoped feed).
+        allowEmptyValue: true
+        allowReserved: true
+      - name: X-Agent-ID
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 36
+            pattern: ^agt_[0-9a-f]{32}$
+          - type: 'null'
+        description: Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.
+      - name: X-Instance-ID
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 1024
+          - type: 'null'
+        description: Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - transaction
+                        id:
+                          type: string
+                          pattern: ^txn_[0-9a-f]{32}$
+                          description: Transaction ID (txn_*).
+                        attributes:
+                          type: object
+                          properties:
+                            amount:
+                              type: integer
+                              description: Amount in cents.
+                            currency:
+                              type: string
+                              description: Currency code.
+                            status:
+                              type: string
+                              description: Transaction status.
+                            createdAt:
+                              type: string
+                              description: When this transaction was created.
+                            transactionType:
+                              enum:
+                              - payment
+                              - transfer
+                              type: string
+                              description: Transaction type.
+                            direction:
+                              enum:
+                              - INBOUND
+                              - OUTBOUND
+                              type: string
+                              description: Direction relative to your party.
+                            description:
+                              anyOf:
+                              - type: string
+                              - type: 'null'
+                              description: Transaction description.
+                            updatedAt:
+                              anyOf:
+                              - type: string
+                              - type: 'null'
+                              description: When this transaction was last updated.
+                            expectedAvailableAt:
+                              anyOf:
+                              - type: string
+                              - type: 'null'
+                              description: Projected funds-available time, or null for payments and transfers without a projection.
+                          required:
+                          - amount
+                          - currency
+                          - status
+                          - createdAt
+                          - transactionType
+                          - direction
+                          - description
+                          - updatedAt
+                          - expectedAvailableAt
+                          additionalProperties: false
+                          title: TransactionAttributes
+                        relationships:
+                          type: object
+                          properties:
+                            sourceParty:
+                              type: object
+                              properties:
+                                data:
+                                  anyOf:
+                                  - type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        enum:
+                                        - party
+                                      id:
+                                        type: string
+                                        pattern: ^pty_[0-9a-f]{32}$
+                                    required:
+                                    - type
+                                    - id
+                                    additionalProperties: false
+                                    title: ResourceIdentifier
+                                    description: Related resource identifier.
+                                  - type: 'null'
+                              required:
+                              - data
+                              additionalProperties: false
+                              title: NullableToOneRelationship
+                              description: Source party.
+                            destinationParty:
+                              type: object
+                              properties:
+                                data:
+                                  anyOf:
+                                  - type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        enum:
+                                        - party
+                                      id:
+                                        type: string
+                                        pattern: ^pty_[0-9a-f]{32}$
+                                    required:
+                                    - type
+                                    - id
+                                    additionalProperties: false
+                                    title: ResourceIdentifier
+                                    description: Related resource identifier.
+                                  - type: 'null'
+                              required:
+                              - data
+                              additionalProperties: false
+                              title: NullableToOneRelationship
+                              description: Destination party.
+                            payment:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - payment
+                                    id:
+                                      type: string
+                                      pattern: ^pay_[0-9a-f]{32}$
+                                  required:
+                                  - type
+                                  - id
+                                  additionalProperties: false
+                                  title: ResourceIdentifier
+                                  description: Related resource identifier.
+                              required:
+                              - data
+                              additionalProperties: false
+                              description: Related payment, when accessible.
+                            transfer:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - transfer
+                                    id:
+                                      type: string
+                                      pattern: ^trf_[0-9a-f]{32}$
+                                  required:
+                                  - type
+                                  - id
+                                  additionalProperties: false
+                                  title: ResourceIdentifier
+                                  description: Related resource identifier.
+                              required:
+                              - data
+                              additionalProperties: false
+                              description: Related transfer, when accessible.
+                            wallet:
+                              type: object
+                              properties:
+                                data:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - wallet
+                                    id:
+                                      type: string
+                                      pattern: ^wal_[0-9a-f]{32}$
+                                  required:
+                                  - type
+                                  - id
+                                  additionalProperties: false
+                                  title: ResourceIdentifier
+                                  description: Related resource identifier.
+                              required:
+                              - data
+                              additionalProperties: false
+                              description: Wallet through which this transaction is visible.
+                          required:
+                          - sourceParty
+                          - destinationParty
+                          additionalProperties: false
+                          title: TransactionRelationships
+                      required:
+                      - type
+                      - id
+                      - attributes
+                      - relationships
+                      additionalProperties: false
+                      title: TransactionResource
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        type: object
+                        properties:
+                          hasMore:
+                            type: boolean
+                            description: Whether more results are available.
+                          nextCursor:
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                            description: Cursor for the next page, or null when there are no more results.
+                        required:
+                        - hasMore
+                        - nextCursor
+                        additionalProperties: false
+                        title: PaginationMeta
+                    required:
+                    - pagination
+                    additionalProperties: false
+                required:
+                - data
+                - meta
+                additionalProperties: false
+                title: TransactionListResponse
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    data:
+                    - type: transaction
+                      id: txn_650e8400e29b41d4a716446655440000
+                      attributes:
+                        amount: 50000
+                        currency: USD
+                        status: PROCESSING
+                        description: Cash in
+                        createdAt: '2026-01-04T15:30:00Z'
+                        updatedAt: '2026-01-04T15:31:00Z'
+                        transactionType: transfer
+                        direction: INBOUND
+                        expectedAvailableAt: null
+                      relationships:
+                        sourceParty:
+                          data: null
+                        destinationParty:
+                          data:
+                            type: party
+                            id: pty_7c9e6679e29b41d4a716446655440001
+                        transfer:
+                          data:
+                            type: transfer
+                            id: trf_650e8400e29b41d4a716446655440000
+                    meta:
+                      pagination:
+                        hasMore: false
+                        nextCursor: null
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum requests allowed per window.
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Requests remaining in current window.
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when rate limit resets.
+              schema:
+                type: integer
+        '400':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: invalid_value
+                      detail: The information you entered isn't valid. Please check it and try again.
+                      status: '400'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: unauthenticated
+                      detail: Authentication is required.
+                      status: '401'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: forbidden
+                      detail: You do not have permission to perform this action.
+                      status: '403'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '404':
+          description: Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: not_found
+                      detail: The requested resource was not found.
+                      status: '404'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: conflict
+                      detail: The request conflicts with the current resource state.
+                      status: '409'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: invalid_value
+                      detail: The information you entered isn't valid. Please check it and try again.
+                      status: '422'
+                      source:
+                        pointer: /data/attributes/email
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '428':
+          description: Precondition Required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: mfa_required
+                      detail: MFA verification required
+                      status: '428'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: rate_limited
+                      detail: Too many requests. Please try again later.
+                      status: '429'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying.
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              description: Maximum requests allowed per window.
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Requests remaining in current window.
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when rate limit resets.
+              schema:
+                type: integer
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: server_error
+                      detail: Something went wrong.
+                      status: '500'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '501':
+          description: Not Implemented
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: not_implemented
+                      detail: This operation is not available.
+                      status: '501'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: bad_gateway
+                      detail: We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.
+                      status: '502'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: service_unavailable
+                      detail: The service is temporarily unavailable.
+                      status: '503'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+      security:
+      - HTTPBearer: []
+  /transactions/{transactionId}:
+    get:
+      operationId: transactions.get
+      summary: Get transaction
+      description: Get a transaction
+      tags:
+      - Transactions
+      parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^txn_[0-9a-f]{32}$
+          description: Transaction ID (txn_*).
+      - name: partyId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^pty_[0-9a-f]{32}$
+          description: Defaults to your party. To act for another party, pass the ID of a party that has authorized you to act on its behalf.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: X-Agent-ID
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 36
+            pattern: ^agt_[0-9a-f]{32}$
+          - type: 'null'
+        description: Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.
+      - name: X-Instance-ID
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 1024
+          - type: 'null'
+        description: Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - transaction
+                      id:
+                        type: string
+                        pattern: ^txn_[0-9a-f]{32}$
+                        description: Transaction ID (txn_*).
+                      attributes:
+                        type: object
+                        properties:
+                          amount:
+                            type: integer
+                            description: Amount in cents.
+                          currency:
+                            type: string
+                            description: Currency code.
+                          status:
+                            type: string
+                            description: Transaction status.
+                          createdAt:
+                            type: string
+                            description: When this transaction was created.
+                          transactionType:
+                            enum:
+                            - payment
+                            - transfer
+                            type: string
+                            description: Transaction type.
+                          direction:
+                            enum:
+                            - INBOUND
+                            - OUTBOUND
+                            type: string
+                            description: Direction relative to your party.
+                          description:
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                            description: Transaction description.
+                          updatedAt:
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                            description: When this transaction was last updated.
+                          expectedAvailableAt:
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                            description: Projected funds-available time, or null for payments and transfers without a projection.
+                        required:
+                        - amount
+                        - currency
+                        - status
+                        - createdAt
+                        - transactionType
+                        - direction
+                        - description
+                        - updatedAt
+                        - expectedAvailableAt
+                        additionalProperties: false
+                        title: TransactionAttributes
+                      relationships:
+                        type: object
+                        properties:
+                          sourceParty:
+                            type: object
+                            properties:
+                              data:
+                                anyOf:
+                                - type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - party
+                                    id:
+                                      type: string
+                                      pattern: ^pty_[0-9a-f]{32}$
+                                  required:
+                                  - type
+                                  - id
+                                  additionalProperties: false
+                                  title: ResourceIdentifier
+                                  description: Related resource identifier.
+                                - type: 'null'
+                            required:
+                            - data
+                            additionalProperties: false
+                            title: NullableToOneRelationship
+                            description: Source party.
+                          destinationParty:
+                            type: object
+                            properties:
+                              data:
+                                anyOf:
+                                - type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                      - party
+                                    id:
+                                      type: string
+                                      pattern: ^pty_[0-9a-f]{32}$
+                                  required:
+                                  - type
+                                  - id
+                                  additionalProperties: false
+                                  title: ResourceIdentifier
+                                  description: Related resource identifier.
+                                - type: 'null'
+                            required:
+                            - data
+                            additionalProperties: false
+                            title: NullableToOneRelationship
+                            description: Destination party.
+                          payment:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                    - payment
+                                  id:
+                                    type: string
+                                    pattern: ^pay_[0-9a-f]{32}$
+                                required:
+                                - type
+                                - id
+                                additionalProperties: false
+                                title: ResourceIdentifier
+                                description: Related resource identifier.
+                            required:
+                            - data
+                            additionalProperties: false
+                            description: Related payment, when accessible.
+                          transfer:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                    - transfer
+                                  id:
+                                    type: string
+                                    pattern: ^trf_[0-9a-f]{32}$
+                                required:
+                                - type
+                                - id
+                                additionalProperties: false
+                                title: ResourceIdentifier
+                                description: Related resource identifier.
+                            required:
+                            - data
+                            additionalProperties: false
+                            description: Related transfer, when accessible.
+                          wallet:
+                            type: object
+                            properties:
+                              data:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                    - wallet
+                                  id:
+                                    type: string
+                                    pattern: ^wal_[0-9a-f]{32}$
+                                required:
+                                - type
+                                - id
+                                additionalProperties: false
+                                title: ResourceIdentifier
+                                description: Related resource identifier.
+                            required:
+                            - data
+                            additionalProperties: false
+                            description: Wallet through which this transaction is visible.
+                        required:
+                        - sourceParty
+                        - destinationParty
+                        additionalProperties: false
+                        title: TransactionRelationships
+                    required:
+                    - type
+                    - id
+                    - attributes
+                    - relationships
+                    additionalProperties: false
+                    title: TransactionResource
+                required:
+                - data
+                additionalProperties: false
+                title: TransactionSingleResponse
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    data:
+                      type: transaction
+                      id: txn_550e8400e29b41d4a716446655440000
+                      attributes:
+                        amount: 100000
+                        currency: USD
+                        status: COMPLETED
+                        description: Invoice payment
+                        createdAt: '2026-01-04T15:30:00Z'
+                        updatedAt: '2026-01-04T15:31:00Z'
+                        transactionType: payment
+                        direction: OUTBOUND
+                        expectedAvailableAt: null
+                      relationships:
+                        sourceParty:
+                          data:
+                            type: party
+                            id: pty_7c9e6679e29b41d4a716446655440001
+                        destinationParty:
+                          data:
+                            type: party
+                            id: pty_7c9e6679e29b41d4a716446655440002
+                        payment:
+                          data:
+                            type: payment
+                            id: pay_550e8400e29b41d4a716446655440000
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum requests allowed per window.
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Requests remaining in current window.
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when rate limit resets.
+              schema:
+                type: integer
+        '400':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: invalid_value
+                      detail: The information you entered isn't valid. Please check it and try again.
+                      status: '400'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: unauthenticated
+                      detail: Authentication is required.
+                      status: '401'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: forbidden
+                      detail: You do not have permission to perform this action.
+                      status: '403'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '404':
+          description: Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: not_found
+                      detail: The requested resource was not found.
+                      status: '404'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: conflict
+                      detail: The request conflicts with the current resource state.
+                      status: '409'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: invalid_value
+                      detail: The information you entered isn't valid. Please check it and try again.
+                      status: '422'
+                      source:
+                        pointer: /data/attributes/email
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '428':
+          description: Precondition Required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: mfa_required
+                      detail: MFA verification required
+                      status: '428'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: rate_limited
+                      detail: Too many requests. Please try again later.
+                      status: '429'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying.
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              description: Maximum requests allowed per window.
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Requests remaining in current window.
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when rate limit resets.
+              schema:
+                type: integer
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: server_error
+                      detail: Something went wrong.
+                      status: '500'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '501':
+          description: Not Implemented
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: not_implemented
+                      detail: This operation is not available.
+                      status: '501'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '502':
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: bad_gateway
+                      detail: We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.
+                      status: '502'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Stable lower-snake-case public error code.
+                        detail:
+                          type: string
+                          description: Safe user-facing error detail.
+                        status:
+                          type: string
+                          description: HTTP status code as a string.
+                        source:
+                          type: object
+                          description: Location of the invalid request value.
+                          properties:
+                            pointer:
+                              type: string
+                              description: JSON Pointer to the invalid request value.
+                            parameter:
+                              type: string
+                              description: Name of the invalid query parameter.
+                            header:
+                              type: string
+                              description: Name of the invalid request header.
+                          additionalProperties: false
+                        meta:
+                          type: object
+                          description: Additional error context, including support and provider details when available.
+                          properties:
+                            supportId:
+                              type: string
+                              description: Request/support ID for troubleshooting.
+                            connectionStatus:
+                              type: string
+                              enum:
+                              - login_required
+                              - disconnected
+                              description: External account connection state when the error is repairable by relinking.
+                            provider:
+                              type: object
+                              description: Provider error details, when available.
+                              properties:
+                                name:
+                                  type: string
+                                  enum:
+                                  - plaid
+                                  description: Provider that returned the underlying error.
+                                errorCode:
+                                  type: string
+                                  description: Provider error code, when available.
+                                errorType:
+                                  type: string
+                                  description: Provider error type, when available.
+                                requestId:
+                                  type: string
+                                  description: Provider request ID for troubleshooting.
+                              required:
+                              - name
+                              additionalProperties: false
+                          required:
+                          - supportId
+                          additionalProperties: false
+                      required:
+                      - code
+                      - detail
+                      - status
+                      - meta
+                      additionalProperties: false
+                required:
+                - errors
+                additionalProperties: false
+              examples:
+                default:
+                  summary: Default
+                  value:
+                    errors:
+                    - code: service_unavailable
+                      detail: The service is temporarily unavailable.
+                      status: '503'
+                      meta:
+                        supportId: req_a1b2c3d4e5f6
+      security:
+      - HTTPBearer: []
+components:
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication: send your API key, agent key, or OAuth access token as `Authorization: Bearer <credential>`.'
