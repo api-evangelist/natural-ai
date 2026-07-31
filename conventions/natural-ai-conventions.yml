@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/api-reference/about
+authentication:
+  style: Bearer (API key, agent key, or OAuth access token)
+  docs: https://docs.natural.com/api-reference/authentication
+  artifact: authentication/natural-ai-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  required_on: mutating endpoints (POST/PATCH/DELETE money-movement + resource ops)
+  key_format: UUIDv4/UUIDv7 or any unique string up to 255 chars
+  scope: scoped to the acting party
+  retention: record expires 48 hours after the operation finishes
+  replay_signal: X-Idempotency-Replayed header set true on replayed responses
+  missing_key_error: 400 invalid_value (or 428 precondition) when required and omitted
+  docs: https://docs.natural.com/api-reference/idempotency
+pagination:
+  style: cursor
+  params: [cursor, limit]
+  response_fields: [data, meta.pagination.nextCursor]
+  cursor_opacity: opaque; do not parse or construct
+  docs: https://docs.natural.com/api-reference/pagination
+ids:
+  style: prefixed opaque identifiers
+  prefixes:
+    pty_: party
+    agt_: agent
+    pay_: payment
+    txn_: transaction
+    prq_: payment request
+    eac_: external account
+    wal_: wallet
+    trf_: transfer
+  docs: https://docs.natural.com/api-reference/IDs
+error_envelope:
+  format: json:api
+  field: errors
+  artifact: errors/natural-ai-error-codes.yml
+rate_limit_signaling:
+  algorithm: token bucket (per credential; per client IP for unauthenticated)
+  headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After]
+  artifact: rate-limits/natural-ai-rate-limits.yml
+versioning:
+  scheme: unversioned; additive, non-breaking changes only
+  docs: https://docs.natural.com/api-reference/backwards-compatibility
+  artifact: lifecycle/natural-ai-lifecycle.yml
+request_response:
+  content_type: application/json (JSON:API conventions — data / meta envelope)
+  docs: https://docs.natural.com/api-reference/about

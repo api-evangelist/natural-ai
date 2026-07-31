@@ -1,0 +1,2153 @@
+{
+  "info": {
+    "_postman_id": "614f9259-7d47-4cc7-8b5c-66bd903bad5d",
+    "name": "Natural Agent Keys Events API",
+    "description": "Natural's payments API for autonomous agents.\n\n**Base URL:** `https://api.natural.com`\n\nAI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.\n\nFor support: support@natural.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:01.000Z",
+    "updatedAt": "2026-07-28T02:16:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-614f9259-7d47-4cc7-8b5c-66bd903bad5d"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{eventId}",
+          "item": [
+            {
+              "name": "Get event",
+              "id": "5a77d4cc-0a63-4a12-b9df-088dc4ff7bd7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3e509645-5086-4a76-a701-626bef547d16",
+                      "key": "eventId",
+                      "value": "evt_c4d00643f8c78aba451e5fb27a72565e",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get an event"
+              },
+              "response": [
+                {
+                  "id": "560eeb2c-e5bb-4f50-903b-01f0ad483e53",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum requests allowed per window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requests remaining in current window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unix timestamp when rate limit resets.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Reset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"type\": \"event\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"eventType\": \"payment.completed\",\n      \"resourceId\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"payload\": {\n        \"object\": {\n          \"description\": \"Point-in-time resource snapshot.\"\n        },\n        \"pariatur_3\": {}\n      },\n      \"createdAt\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"party\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-560eeb2c-e5bb-4f50-903b-01f0ad483e53"
+                },
+                {
+                  "id": "6e607b91-ab82-4935-8dc1-a5c69e3d92f9",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-6e607b91-ab82-4935-8dc1-a5c69e3d92f9"
+                },
+                {
+                  "id": "c86af653-37b3-4a22-868f-b44066bc2ab7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-c86af653-37b3-4a22-868f-b44066bc2ab7"
+                },
+                {
+                  "id": "71b7811c-9934-4ef4-9b72-179310f580a9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-71b7811c-9934-4ef4-9b72-179310f580a9"
+                },
+                {
+                  "id": "35878967-a85c-45c4-9287-48a82b5acc78",
+                  "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-35878967-a85c-45c4-9287-48a82b5acc78"
+                },
+                {
+                  "id": "de1fcb44-163d-407c-a3c6-92c1eb98845e",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-de1fcb44-163d-407c-a3c6-92c1eb98845e"
+                },
+                {
+                  "id": "7703ef1c-2cca-46b1-83c7-31cc34b12503",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-7703ef1c-2cca-46b1-83c7-31cc34b12503"
+                },
+                {
+                  "id": "7bdca8e8-2b33-45fa-a1c7-5fbcdd105d95",
+                  "name": "Precondition Required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Precondition Required",
+                  "code": 428,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-7bdca8e8-2b33-45fa-a1c7-5fbcdd105d95"
+                },
+                {
+                  "id": "6e8bf975-7423-45f9-a3c6-748e443ade4e",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds to wait before retrying.",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum requests allowed per window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requests remaining in current window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unix timestamp when rate limit resets.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Reset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-6e8bf975-7423-45f9-a3c6-748e443ade4e"
+                },
+                {
+                  "id": "40611e2a-dfa9-4907-a161-9ac5226f18d3",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-40611e2a-dfa9-4907-a161-9ac5226f18d3"
+                },
+                {
+                  "id": "e8bdf75c-3cab-4cf3-b22c-6d425b7cc323",
+                  "name": "Not Implemented",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Implemented",
+                  "code": 501,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-e8bdf75c-3cab-4cf3-b22c-6d425b7cc323"
+                },
+                {
+                  "id": "474d26c6-6daf-4586-8e63-50c310c1af40",
+                  "name": "Bad Gateway",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Gateway",
+                  "code": 502,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-474d26c6-6daf-4586-8e63-50c310c1af40"
+                },
+                {
+                  "id": "eedf6e04-8d98-4db6-961c-802d15ed6c5c",
+                  "name": "Service Unavailable",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:eventId?partyId=pty_243be0d60f33430c4e62c9904d5a41b0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":eventId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-eedf6e04-8d98-4db6-961c-802d15ed6c5c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-5a77d4cc-0a63-4a12-b9df-088dc4ff7bd7"
+            }
+          ],
+          "id": "cd2ad13f-e670-43f8-a3fc-4e292855fa33",
+          "createdAt": "2026-07-28T02:16:01.000Z",
+          "updatedAt": "2026-07-28T02:16:01.000Z",
+          "uid": "35240-cd2ad13f-e670-43f8-a3fc-4e292855fa33"
+        },
+        {
+          "name": "List events",
+          "id": "ea5f0ac5-bbe3-4618-b99c-e0678780313d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+              },
+              {
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "partyId",
+                  "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                },
+                {
+                  "key": "eventType",
+                  "value": "deposit.canceled"
+                },
+                {
+                  "key": "createdAfter",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "createdBefore",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "List events"
+          },
+          "response": [
+            {
+              "id": "df794364-5e3e-4391-8868-242d016048e0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Maximum requests allowed per window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Requests remaining in current window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unix timestamp when rate limit resets.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Reset",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"event\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"eventType\": \"withdrawal.created\",\n        \"resourceId\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"payload\": {\n          \"object\": {\n            \"description\": \"Point-in-time resource snapshot.\"\n          }\n        },\n        \"createdAt\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"party\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"event\",\n      \"id\": \"<string>\",\n      \"attributes\": {\n        \"eventType\": \"payment_request.completed\",\n        \"resourceId\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"payload\": {\n          \"object\": {\n            \"description\": \"Point-in-time resource snapshot.\"\n          },\n          \"do_ebe\": {},\n          \"magna7\": {},\n          \"Ut_1c8\": {}\n        },\n        \"createdAt\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"party\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"hasMore\": \"<boolean>\",\n      \"nextCursor\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-df794364-5e3e-4391-8868-242d016048e0"
+            },
+            {
+              "id": "d428fe1a-22d1-4586-bd24-c260d6d421c1",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-d428fe1a-22d1-4586-bd24-c260d6d421c1"
+            },
+            {
+              "id": "4acc5c8a-1865-406a-b121-15dbe014fb20",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-4acc5c8a-1865-406a-b121-15dbe014fb20"
+            },
+            {
+              "id": "9c422633-7ab6-47f3-88be-1ea49db14e5c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-9c422633-7ab6-47f3-88be-1ea49db14e5c"
+            },
+            {
+              "id": "692912c8-a282-44e5-bfe7-f2033df3e262",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-692912c8-a282-44e5-bfe7-f2033df3e262"
+            },
+            {
+              "id": "e260de82-71eb-42a1-a5ad-882187577880",
+              "name": "Conflict",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-e260de82-71eb-42a1-a5ad-882187577880"
+            },
+            {
+              "id": "7f94d3a4-3ee9-4160-801b-fb3c77200a90",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-7f94d3a4-3ee9-4160-801b-fb3c77200a90"
+            },
+            {
+              "id": "f0dc2e14-6edf-4f24-bd70-9b24a4d71cee",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-f0dc2e14-6edf-4f24-bd70-9b24a4d71cee"
+            },
+            {
+              "id": "9248347b-e2bd-4e0c-a612-f8014df0991b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Seconds to wait before retrying.",
+                    "type": "text/plain"
+                  },
+                  "key": "Retry-After",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Maximum requests allowed per window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Requests remaining in current window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unix timestamp when rate limit resets.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Reset",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-9248347b-e2bd-4e0c-a612-f8014df0991b"
+            },
+            {
+              "id": "7fb90de8-eac1-46c8-83ab-35867b2bad5c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-7fb90de8-eac1-46c8-83ab-35867b2bad5c"
+            },
+            {
+              "id": "57a8e637-4aa0-4f4c-8286-37e69f91d9b6",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-57a8e637-4aa0-4f4c-8286-37e69f91d9b6"
+            },
+            {
+              "id": "39f9a09d-6965-4592-9fe7-ce1df7286ba7",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-39f9a09d-6965-4592-9fe7-ce1df7286ba7"
+            },
+            {
+              "id": "2153c414-74ce-447a-9875-270d8e43976c",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_48a9d83ad71f076f66fc1b668da478b5"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?partyId=pty_243be0d60f33430c4e62c9904d5a41b0&eventType=deposit.canceled&createdAfter=<dateTime>&createdBefore=<dateTime>&cursor=<string>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_243be0d60f33430c4e62c9904d5a41b0"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "deposit.canceled"
+                    },
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"disconnected\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-2153c414-74ce-447a-9875-270d8e43976c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:01.000Z",
+          "updatedAt": "2026-07-28T02:16:01.000Z",
+          "uid": "35240-ea5f0ac5-bbe3-4618-b99c-e0678780313d"
+        }
+      ],
+      "id": "4d4946c1-ce91-4a26-8ba2-77bb27ee15e3",
+      "createdAt": "2026-07-28T02:16:01.000Z",
+      "updatedAt": "2026-07-28T02:16:01.000Z",
+      "uid": "35240-4d4946c1-ce91-4a26-8ba2-77bb27ee15e3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.natural.com"
+    }
+  ]
+}

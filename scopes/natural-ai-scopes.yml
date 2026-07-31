@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.natural.com/.well-known/oauth-authorization-server
+docs: https://docs.natural.com/api-reference/authentication
+schemes:
+- name: OAuth2
+  source: https://api.natural.com/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.natural.com/oauth/authorize
+    tokenUrl: https://api.natural.com/oauth/token
+# OAuth (MCP) scopes advertised by the authorization server
+oauth_scopes:
+- scope: payments:move
+  description: Send, request, fulfill, and move money on behalf of the grant.
+- scope: external-accounts:link
+  description: Link and manage external bank accounts.
+- scope: agents:operate
+  description: Operate as / manage agents.
+- scope: customers:invite
+  description: Invite and manage connected customers.
+# Fine-grained API-key permission scopes (documented, resource.action form)
+api_key_scopes:
+- agents.read
+- agents.create
+- agents.update
+- agent_keys.create
+- payments.read
+- payments.create
+- payment_requests.create
+- wallets.read
+- wallets.create
+- wallets.update
+- customers.create
+- external_accounts.create
+- party.read
+- party.update
+notes:
+- OAuth (MCP) scopes and API-key permission scopes are distinct grant surfaces.
+- API keys can be scoped down to a subset of permissions (e.g. read-only, payments-only).

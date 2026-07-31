@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/natural-ai-openapi-original.json + https://docs.natural.com/api-reference/IDs
+entities:
+- name: Party
+  id_prefix: pty_
+  description: Identity unit — a business or individual
+- name: Agent
+  id_prefix: agt_
+  description: Autonomous programmatic actor that executes payments, owned by a party
+- name: Wallet
+  id_prefix: wal_
+  description: USD-backed balance held per party (FDIC-insured accounts)
+- name: Payment
+  id_prefix: pay_
+  description: Outbound/inbound money-movement primitive
+- name: PaymentRequest
+  id_prefix: prq_
+  description: A request for a payment addressed to a payer
+- name: Transaction
+  id_prefix: txn_
+  description: Ledger record of a movement
+- name: Transfer
+  id_prefix: trf_
+  description: Movement between wallets or external accounts
+- name: ExternalAccount
+  id_prefix: eac_
+  description: Linked external bank account (via Plaid processor token)
+relationships:
+- from: Agent
+  type: belongs_to
+  to: Party
+  via: party
+- from: Wallet
+  type: belongs_to
+  to: Party
+  via: party
+- from: Agent
+  type: has_many
+  to: Wallet
+  via: wallet-access grants
+- from: Payment
+  type: belongs_to
+  to: Wallet
+  via: wallet
+- from: Payment
+  type: has_one
+  to: Agent
+  via: acting agent (attribution)
+- from: PaymentRequest
+  type: has_one
+  to: Payment
+  via: fulfillment
+- from: Transfer
+  type: references
+  to: ExternalAccount
+  via: external_account (deposit/withdraw)
+- from: ExternalAccount
+  type: belongs_to
+  to: Party
+  via: party
+- from: Transaction
+  type: references
+  to: Payment
+  via: payment/transfer
+notes:
+- Derived from OpenAPI paths + the published prefixed-ID reference.

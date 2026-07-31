@@ -1,0 +1,42 @@
+{
+  "provider": "natural-ai",
+  "sources": [
+    "natural-ai-agent-keys-api-openapi.yml",
+    "natural-ai-agents-api-openapi.yml",
+    "natural-ai-api-keys-api-openapi.yml",
+    "natural-ai-approvals-api-openapi.yml",
+    "natural-ai-customers-api-openapi.yml",
+    "natural-ai-events-api-openapi.yml",
+    "natural-ai-external-accounts-api-openapi.yml",
+    "natural-ai-invitations-api-openapi.yml",
+    "natural-ai-parties-api-openapi.yml",
+    "natural-ai-paymentrequests-api-openapi.yml",
+    "natural-ai-payments-api-openapi.yml",
+    "natural-ai-transactions-api-openapi.yml",
+    "natural-ai-transfers-api-openapi.yml",
+    "natural-ai-wallets-api-openapi.yml",
+    "natural-ai-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "natural-ai-agent-keys-api-openapi.yml",
+    "natural-ai-agents-api-openapi.yml",
+    "natural-ai-api-keys-api-openapi.yml",
+    "natural-ai-approvals-api-openapi.yml",
+    "natural-ai-customers-api-openapi.yml",
+    "natural-ai-events-api-openapi.yml",
+    "natural-ai-external-accounts-api-openapi.yml",
+    "natural-ai-invitations-api-openapi.yml",
+    "natural-ai-parties-api-openapi.yml",
+    "natural-ai-paymentrequests-api-openapi.yml",
+    "natural-ai-payments-api-openapi.yml",
+    "natural-ai-transactions-api-openapi.yml",
+    "natural-ai-transfers-api-openapi.yml",
+    "natural-ai-wallets-api-openapi.yml",
+    "natural-ai-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/api-reference/backwards-compatibility
+versioning:
+  scheme: unversioned
+  current: single version (no version header/path)
+  policy: >-
+    The Natural API is unversioned. There is one version and Natural does not make
+    backwards-incompatible changes to existing endpoints; the API evolves through
+    additive, non-breaking changes only.
+  docs: https://docs.natural.com/api-reference/backwards-compatibility
+backwards_compatible_changes:
+- Adding new endpoints and resources
+- Adding new optional request parameters
+- Adding new response fields
+- Adding new error codes
+breaking_changes_avoided:
+- Removing or repurposing existing fields
+- Changing the length or format of opaque strings (IDs, cursors, tokens)
+deprecation:
+  policy: >-
+    Additive-only contract; any breaking change is announced 12 months in advance,
+    documented with a migration guide, and supported alongside the new version
+    during the transition period.
+  policy_url: https://docs.natural.com/changelog
+  backwards_compatibility_url: https://docs.natural.com/api-reference/backwards-compatibility
+  sunset_header: false
+reliability:
+  docs: https://docs.natural.com/guides/platform/reliability
+  notes: >-
+    Data on Amazon Aurora PostgreSQL with primary + replica across availability
+    zones; automated backups. Reliability guidance published, no numeric SLA.
+status_page: https://status.natural.com
+status_page_provider: incident.io
+status_components:
+- API
+- Dashboard
+- MCP
+- Webhooks
+notes:
+- >-
+  Public incident.io status page at https://status.natural.com covers API, Dashboard,
+  MCP, and Webhooks components (100% uptime shown Apr-Jul 2026); no numeric SLA is
+  published on the page.
+- >-
+  Breaking-change / deprecation policy published on the changelog page: 12-month
+  advance notice + migration guide + parallel support during transition.

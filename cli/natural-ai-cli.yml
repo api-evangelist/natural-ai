@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/guides/platform/cli
+binary: natural
+install:
+- method: script
+  command: curl -fsSL https://natural.com/install.sh | bash
+auth:
+  flow: browser OAuth
+  command: natural login
+  fallback: API key (sk_ntl_) or agent key (ak_ntl_) as bearer
+flags:
+- name: --idempotency-key
+  description: Supply an Idempotency-Key for mutating commands
+command_groups:
+- group: agents
+  examples: [natural agents create]
+- group: payments
+  examples: [natural payments ...]
+- group: wallets
+- group: transfers
+- group: payment-requests
+- group: approvals
+- group: customers
+- group: external-accounts
+notes:
+- The natural CLI targets terminals, CI, and agent harnesses; it shares the same
+  credentials as the SDKs and REST API.
+- Command surface mirrors the REST resource groups; see docs for the full reference.

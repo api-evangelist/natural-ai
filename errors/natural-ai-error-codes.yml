@@ -1,0 +1,53 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/api-reference/errors/error-handling
+format: json:api
+envelope:
+  field: errors
+  shape: >-
+    Errors return an `errors[]` array; each item has code (stable lower-snake-case),
+    detail (safe user-facing message), status (HTTP status as string), and optional
+    source (pointer/parameter/header) and meta (supportId, and for external-account
+    errors connectionStatus + provider).
+  support_id: meta.supportId is included on public error responses for correlation.
+common_codes:
+- code: invalid_value
+  status: 400
+  detail: The information you entered isn't valid. Please check it and try again.
+- code: invalid_pagination_cursor
+  status: 400
+  detail: Invalid pagination cursor.
+- code: unauthorized
+  status: 401
+  detail: Authentication failed or credential invalid.
+- code: forbidden
+  status: 403
+  detail: Credential lacks the required scope/permission.
+- code: insufficient_funds
+  status: 422
+  detail: Insufficient funds.
+- code: rate_limited
+  status: 429
+  detail: Too many requests. Please try again later. (carries Retry-After header)
+- code: server_error
+  status: 500
+  detail: Something went wrong.
+resource_not_found_codes:
+- {code: agent_not_found, status: 404}
+- {code: agent_key_not_found, status: 404}
+- {code: api_key_not_found, status: 404}
+- {code: approval_not_found, status: 404}
+- {code: customer_not_found, status: 404}
+- {code: event_not_found, status: 404}
+- {code: payment_not_found, status: 404}
+- {code: payment_request_not_found, status: 404}
+- {code: wallet_not_found, status: 404}
+- {code: transaction_not_found, status: 404}
+- {code: transfer_not_found, status: 404}
+- {code: external_account_not_found, status: 404}
+http_status_codes_used: [400, 401, 403, 404, 409, 422, 428, 429, 500, 501, 502, 503]
+notes:
+- Validation (422) and rate-limit (429) errors apply to all endpoints.
+- 428 is returned when a required Idempotency-Key precondition is unmet.
+- External-account errors repairable by relinking include meta.connectionStatus
+  (login_required or disconnected) and meta.provider.

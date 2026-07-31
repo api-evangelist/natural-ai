@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Natural
+  version: 1.0.0
+extends: openapi/natural-ai-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: natural-ai
+    x-apievangelist-category: agentic-payments
+    x-apievangelist-conventions: conventions/natural-ai-conventions.yml
+    x-apievangelist-errors: errors/natural-ai-error-codes.yml
+    x-apievangelist-authentication: authentication/natural-ai-authentication.yml
+- target: $.info
+  update:
+    x-apievangelist-idempotency:
+      header: Idempotency-Key
+      required_on: mutating endpoints
+      retention_hours: 48
+    x-apievangelist-pagination:
+      style: cursor
+      params: [cursor, limit]
+    x-apievangelist-webhooks: asyncapi/natural-ai-webhooks.yml
+- target: $.info
+  update:
+    x-apievangelist-mcp: mcp/natural-ai-mcp.yml
+    x-apievangelist-agentic-access: agentic-access/natural-ai-agentic-access.yml

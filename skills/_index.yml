@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.natural.com/skill.md
+skills:
+- file: natural-ai-skill.md
+  name: Operate Natural via MCP
+  description: >-
+    Provider-published operating playbook (skill.md) for AI hosts operating
+    Natural on a user's behalf — connect the hosted MCP server with OAuth, then
+    move money, manage wallets/agents, and handle approvals via natural language.
+  api: openapi/natural-ai-openapi-original.json
+  operations: [payments.create, transfers.initiateInternal, wallets.list, agents.create, approvals.approve]

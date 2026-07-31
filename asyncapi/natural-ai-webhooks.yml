@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/guides/webhooks (+ openapi Webhooks/Events tags)
+spec_type: Webhooks
+surface:
+  delivery: HTTP POST to registered endpoints
+  management_api: true
+  signing: HMAC signing secret per webhook (rotatable via POST /webhooks/{webhookId}/rotate-secret)
+  event_store: Events API (GET /events, GET /events/{eventId}) for polling/replay
+  management_operations:
+  - webhooks.create
+  - webhooks.list
+  - webhooks.get
+  - webhooks.update
+  - webhooks.remove
+  - webhooks.rotateSecret
+event_types:
+- payment.created
+- payment.completed
+- payment.failed
+- payment.canceled
+- deposit.created
+- deposit.completed
+- deposit.failed
+- deposit.canceled
+- withdrawal.created
+- withdrawal.completed
+- withdrawal.failed
+- withdrawal.canceled
+- payment_request.created
+- payment_request.completed
+- payment_request.canceled
+- payment_request.declined
+- approval.approved
+- approval.denied
+- approval.canceled
+- party.updated
+- wallet.created
+- compliance_case.updated
+- agent_delegation_invitation.created
+- agent_delegation_invitation.canceled
+- agent_delegation_invitation.declined
+notes:
+- Natural documents webhooks and an Events API but publishes no AsyncAPI document;
+  captured here as a Webhooks surface (not fabricated as AsyncAPI).

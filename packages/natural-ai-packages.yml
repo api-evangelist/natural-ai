@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: PyPI + npm registries; https://docs.natural.com/guides/platform/sdks
+packages:
+- language: python
+  registry: pypi
+  name: naturalpay
+  version: 1.0.1
+  url: https://pypi.org/project/naturalpay/
+  install: pip install naturalpay
+  official: true
+  notes: First-party Python SDK (Fern-generated, github.com/naturalpay)
+- language: typescript
+  registry: npm
+  name: "@naturalpay/sdk"
+  version: 1.0.1
+  url: https://www.npmjs.com/package/@naturalpay/sdk
+  install: npm install @naturalpay/sdk
+  official: true
+  notes: First-party TypeScript SDK (Fern-generated, github.com/naturalpay)

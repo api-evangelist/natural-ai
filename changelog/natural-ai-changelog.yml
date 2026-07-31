@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/changelog
+url: https://docs.natural.com/changelog
+scheme: unversioned-additive
+current_version: single unversioned API (no version header/path)
+change_policy:
+  backwards_compatible: >-
+    Natural commits to maintaining backwards compatibility. The API evolves through
+    additive, non-breaking changes only (new endpoints, new optional request
+    parameters, new response fields, new error codes).
+  breaking_change_notice: >-
+    Any breaking change is announced 12 months in advance, documented with a
+    migration guide, and supported alongside the new version during the transition
+    period.
+  docs: https://docs.natural.com/api-reference/backwards-compatibility
+entries: []
+notes:
+- >-
+  The published changelog page states the backwards-compatibility and breaking-change
+  notice policy but exposed no dated release entries at probe time (2026-07-20). The
+  additive-only contract means most changes ship without a versioned entry. Recent
+  window captured as empty rather than fabricated.

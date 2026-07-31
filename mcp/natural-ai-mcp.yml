@@ -1,0 +1,68 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.natural.com/guides/platform/mcp
+server:
+  name: natural
+  transport: http
+  url: https://mcp.natural.com
+  legacy_endpoint: https://mcp.natural.com/mcp
+  auth:
+    default: oauth
+    oauth: browser OAuth 2.1 + PKCE (no API key header); user-scoped or agent-scoped consent
+    fallback: Bearer API key (sk_ntl_) or agent key (ak_ntl_)
+    scopes: [payments:move, external-accounts:link, agents:operate, customers:invite]
+  hosts_supported: [Claude, Claude Code, ChatGPT, Codex, Cursor]
+  notes: >-
+    Natural runs a hosted MCP server exposing 24 intent-shaped tools. Each tool
+    handles orchestration (wallet selection, payer-type detection). Money-moving
+    tools require instanceId per run for agent attribution.
+tools:
+- name: get_transaction_status
+  description: Look up a single payment or transfer by id (pay_* or trf_*)
+- name: wait_for_transaction
+  description: Block until a payment/transfer reaches a terminal status (event-driven, max 60s)
+- name: get_payment_request
+  description: Look up a payment request by id (prq_*)
+- name: list_transactions
+  description: Paginated transaction history
+- name: get_account_balance
+  description: Wallet balance (available plus pending claims)
+- name: list_wallets
+  description: Wallet IDs, names, status, default flags, and balances
+- name: get_identity
+  description: Caller party, acting agent, handles, and credential permissions
+- name: get_party_limits
+  description: Per-transaction, daily, and monthly spend limits (read-only)
+- name: list_external_accounts
+  description: Linked external accounts and provider connection status
+- name: get_external_account
+  description: One linked external account by id (eac_*)
+- name: create_external_account_from_processor_token
+  description: Link or refresh external accounts from a Plaid processor token
+- name: create_payment
+  description: Send a payment to email / phone / @handle / pty_* / agt_*
+- name: cancel_payment
+  description: Cancel a pending-claim outbound payment by id before it is claimed
+- name: request_payment
+  description: Request a payment from email / phone / @handle / pty_* / agt_*
+- name: fulfill_payment_request
+  description: Pay a request after confirming its current amount and currency
+- name: decline_payment_request
+  description: Decline an incoming request (prq_*) without paying it
+- name: deposit_funds
+  description: ACH pull from a linked account; falls back to push-to-wallet instructions
+- name: withdraw_funds
+  description: ACH push to a linked account; auto-selects when exactly one is active
+- name: transfer_between_wallets
+  description: Move funds between two of your own wallets (wal_* to wal_*); returns trf_*
+- name: list_agents
+  description: Your agents
+- name: list_customers
+  description: Your customer relationships (active, pending, revoked, or all)
+- name: create_agent
+  description: Mint a new programmatic actor (your own party only)
+- name: invite_customer
+  description: Send a customer invitation by email
+- name: get_funding_options
+  description: Linked bank accounts + ACH push-to-wallet instructions in one view

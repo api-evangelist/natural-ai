@@ -1,0 +1,2209 @@
+{
+  "info": {
+    "_postman_id": "8e2b569a-104a-42c1-b4ca-378906f5ba3b",
+    "name": "Natural Agent Keys Transactions API",
+    "description": "Natural's payments API for autonomous agents.\n\n**Base URL:** `https://api.natural.com`\n\nAI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.\n\nFor support: support@natural.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:33.000Z",
+    "updatedAt": "2026-07-28T02:16:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8e2b569a-104a-42c1-b4ca-378906f5ba3b"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "{transactionId}",
+          "item": [
+            {
+              "name": "Get transaction",
+              "id": "02a394fd-12de-4c2b-8d09-ac140b3b19d8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3c8e767d-49ac-4543-b32c-0f4661fc1d67",
+                      "key": "transactionId",
+                      "value": "txn_24051eac1d25b755307ef3880628abaf",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a transaction"
+              },
+              "response": [
+                {
+                  "id": "10b0e2cb-edbf-43fd-b0f1-6f05f51bc620",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum requests allowed per window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requests remaining in current window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unix timestamp when rate limit resets.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Reset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"type\": \"transaction\",\n    \"id\": \"txn_4df9c0031c376eb32e53a1050719c2a7\",\n    \"attributes\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<string>\",\n      \"transactionType\": \"transfer\",\n      \"direction\": \"INBOUND\",\n      \"description\": \"<string>\",\n      \"updatedAt\": \"<string>\",\n      \"expectedAvailableAt\": \"<string>\"\n    },\n    \"relationships\": {\n      \"sourceParty\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_59e90d3b65498be62dc028b0c7611aa9\"\n        }\n      },\n      \"destinationParty\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_61cc6eb7399a7106a29e3e8fbe26d261\"\n        }\n      },\n      \"payment\": {\n        \"data\": {\n          \"type\": \"payment\",\n          \"id\": \"pay_ff5684b289975bd1ae5284d3cf5dbbc2\"\n        }\n      },\n      \"transfer\": {\n        \"data\": {\n          \"type\": \"transfer\",\n          \"id\": \"trf_4f0b49d1cc6971cac04db1dd2485e924\"\n        }\n      },\n      \"wallet\": {\n        \"data\": {\n          \"type\": \"wallet\",\n          \"id\": \"wal_91aa583c59f3c9e537837f6c29b27af8\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-10b0e2cb-edbf-43fd-b0f1-6f05f51bc620"
+                },
+                {
+                  "id": "873509c7-862a-43a5-b67d-746c39e80472",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-873509c7-862a-43a5-b67d-746c39e80472"
+                },
+                {
+                  "id": "3e7ba7be-d5d5-4d3a-a633-78836a538a5a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-3e7ba7be-d5d5-4d3a-a633-78836a538a5a"
+                },
+                {
+                  "id": "ea7ca0d2-6d1d-4b8f-868f-fd0360311da0",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-ea7ca0d2-6d1d-4b8f-868f-fd0360311da0"
+                },
+                {
+                  "id": "c646a6f9-ddf0-4d19-9300-1b40fe4bb209",
+                  "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-c646a6f9-ddf0-4d19-9300-1b40fe4bb209"
+                },
+                {
+                  "id": "65243493-6912-45c8-a283-64d650680e8f",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-65243493-6912-45c8-a283-64d650680e8f"
+                },
+                {
+                  "id": "ca442e27-9527-4a50-8a9a-a5692ea35368",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-ca442e27-9527-4a50-8a9a-a5692ea35368"
+                },
+                {
+                  "id": "863cf681-7f58-4a8b-ac33-b28be01c1623",
+                  "name": "Precondition Required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Precondition Required",
+                  "code": 428,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-863cf681-7f58-4a8b-ac33-b28be01c1623"
+                },
+                {
+                  "id": "8096ae03-4268-4944-a8da-09ccea53513b",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds to wait before retrying.",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum requests allowed per window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requests remaining in current window.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unix timestamp when rate limit resets.",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Reset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-8096ae03-4268-4944-a8da-09ccea53513b"
+                },
+                {
+                  "id": "2e5d43f2-15eb-45c0-a5c8-4481459b25c3",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-2e5d43f2-15eb-45c0-a5c8-4481459b25c3"
+                },
+                {
+                  "id": "7db1f356-2f47-4f3b-bd48-bce9acf66281",
+                  "name": "Not Implemented",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Implemented",
+                  "code": 501,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-7db1f356-2f47-4f3b-bd48-bce9acf66281"
+                },
+                {
+                  "id": "0264ca5f-3a52-4e99-9b65-960c367e8119",
+                  "name": "Bad Gateway",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Gateway",
+                  "code": 502,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-0264ca5f-3a52-4e99-9b65-960c367e8119"
+                },
+                {
+                  "id": "5590fe74-03a2-4a54-9ef7-7fc010283fd8",
+                  "name": "Service Unavailable",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                        "key": "X-Agent-ID",
+                        "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                      },
+                      {
+                        "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                        "key": "X-Instance-ID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId?partyId=pty_7fe5a78bc464c9c44e2efbabb4b3e57b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "query": [
+                        {
+                          "key": "partyId",
+                          "value": "pty_7fe5a78bc464c9c44e2efbabb4b3e57b"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:34.000Z",
+                  "updatedAt": "2026-07-28T02:16:34.000Z",
+                  "uid": "35240-5590fe74-03a2-4a54-9ef7-7fc010283fd8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-02a394fd-12de-4c2b-8d09-ac140b3b19d8"
+            }
+          ],
+          "id": "b060904d-7bc4-4abb-9d5a-cbeca7e1bfb3",
+          "createdAt": "2026-07-28T02:16:34.000Z",
+          "updatedAt": "2026-07-28T02:16:34.000Z",
+          "uid": "35240-b060904d-7bc4-4abb-9d5a-cbeca7e1bfb3"
+        },
+        {
+          "name": "List transactions",
+          "id": "0c272a36-6e0c-4c09-9a54-89ae96382746",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+              },
+              {
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "all"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "key": "counterpartyPartyId",
+                  "value": "pty_e428280b630588ddf12520917d631691"
+                },
+                {
+                  "key": "walletId",
+                  "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                },
+                {
+                  "key": "customerPartyId",
+                  "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                },
+                {
+                  "key": "delegated",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "List transactions"
+          },
+          "response": [
+            {
+              "id": "077fd436-77f0-4f71-88ce-82ee3deae55f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Maximum requests allowed per window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Requests remaining in current window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unix timestamp when rate limit resets.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Reset",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"transaction\",\n      \"id\": \"txn_fef9df0afae9936100abb545bfffc909\",\n      \"attributes\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\",\n        \"status\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"transactionType\": \"transfer\",\n        \"direction\": \"OUTBOUND\",\n        \"description\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"expectedAvailableAt\": \"<string>\"\n      },\n      \"relationships\": {\n        \"sourceParty\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_cf33609148fa2b57eac80616d9b96974\"\n          }\n        },\n        \"destinationParty\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_e2ec6d868fdfc427f124107d40d68b8e\"\n          }\n        },\n        \"payment\": {\n          \"data\": {\n            \"type\": \"payment\",\n            \"id\": \"pay_e8a86e913853999ed0fb70026badd99b\"\n          }\n        },\n        \"transfer\": {\n          \"data\": {\n            \"type\": \"transfer\",\n            \"id\": \"trf_780750ee67b482dc51782f15fdf2ac7e\"\n          }\n        },\n        \"wallet\": {\n          \"data\": {\n            \"type\": \"wallet\",\n            \"id\": \"wal_ad992836bd9a4a5c0a3370863a494814\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"transaction\",\n      \"id\": \"txn_0eae8566ddc9e3a08af0866c024b1b10\",\n      \"attributes\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\",\n        \"status\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"transactionType\": \"transfer\",\n        \"direction\": \"INBOUND\",\n        \"description\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"expectedAvailableAt\": \"<string>\"\n      },\n      \"relationships\": {\n        \"sourceParty\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_887eea908aab1113c359f0fda40f7da0\"\n          }\n        },\n        \"destinationParty\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_cc2864637b8d511a84a68b00536e881c\"\n          }\n        },\n        \"payment\": {\n          \"data\": {\n            \"type\": \"payment\",\n            \"id\": \"pay_bea9c8f5cc56213ee78316b132943a12\"\n          }\n        },\n        \"transfer\": {\n          \"data\": {\n            \"type\": \"transfer\",\n            \"id\": \"trf_b9d9719a90a5321d3a4d866c07796550\"\n          }\n        },\n        \"wallet\": {\n          \"data\": {\n            \"type\": \"wallet\",\n            \"id\": \"wal_451c46eda1d74c78aa7653260bbd07ac\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"hasMore\": \"<boolean>\",\n      \"nextCursor\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-077fd436-77f0-4f71-88ce-82ee3deae55f"
+            },
+            {
+              "id": "4bbf3445-3007-4549-839a-a4472ce6a810",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-4bbf3445-3007-4549-839a-a4472ce6a810"
+            },
+            {
+              "id": "f75d60e2-cb1b-480b-b0ba-f1b6da26af5c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-f75d60e2-cb1b-480b-b0ba-f1b6da26af5c"
+            },
+            {
+              "id": "76f8bde7-0a11-417e-8d42-9a8a929f55db",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-76f8bde7-0a11-417e-8d42-9a8a929f55db"
+            },
+            {
+              "id": "0abedb7c-8a7a-4977-9594-acba729aaa99",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-0abedb7c-8a7a-4977-9594-acba729aaa99"
+            },
+            {
+              "id": "c7555657-9034-4b39-b880-bfb0431dfa9b",
+              "name": "Conflict",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-c7555657-9034-4b39-b880-bfb0431dfa9b"
+            },
+            {
+              "id": "c88cb9cc-9917-48dd-88df-89869aafdb21",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-c88cb9cc-9917-48dd-88df-89869aafdb21"
+            },
+            {
+              "id": "13d6043c-c435-477b-bdd5-47ba9f99280b",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-13d6043c-c435-477b-bdd5-47ba9f99280b"
+            },
+            {
+              "id": "89207508-4304-4980-a82e-a4b550bc1a08",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Seconds to wait before retrying.",
+                    "type": "text/plain"
+                  },
+                  "key": "Retry-After",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Maximum requests allowed per window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Requests remaining in current window.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Remaining",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unix timestamp when rate limit resets.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-RateLimit-Reset",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-89207508-4304-4980-a82e-a4b550bc1a08"
+            },
+            {
+              "id": "7a606f16-cb5c-45ba-8c7b-e7bdb268945d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-7a606f16-cb5c-45ba-8c7b-e7bdb268945d"
+            },
+            {
+              "id": "8cc0c8e3-4589-46db-94a9-14fa39246e49",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-8cc0c8e3-4589-46db-94a9-14fa39246e49"
+            },
+            {
+              "id": "ff41c202-88a6-435c-b7c4-7e5d9b2ce4a1",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-ff41c202-88a6-435c-b7c4-7e5d9b2ce4a1"
+            },
+            {
+              "id": "510ccea0-1f41-46c5-8886-ac3e3b035dea",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "agt_74a9e300cba983ee5568b44a7767eaa3"
+                  },
+                  {
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?type=all&limit=50&cursor=<string>&counterpartyPartyId=pty_e428280b630588ddf12520917d631691&walletId=wal_51546e25dd74e8751276fc1cce0877a8&customerPartyId=pty_bca8a28a936bf4b0d54396b260165218&delegated=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "all"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counterpartyPartyId",
+                      "value": "pty_e428280b630588ddf12520917d631691"
+                    },
+                    {
+                      "key": "walletId",
+                      "value": "wal_51546e25dd74e8751276fc1cce0877a8"
+                    },
+                    {
+                      "key": "customerPartyId",
+                      "value": "pty_bca8a28a936bf4b0d54396b260165218"
+                    },
+                    {
+                      "key": "delegated",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"meta\": {\n        \"supportId\": \"<string>\",\n        \"connectionStatus\": \"login_required\",\n        \"provider\": {\n          \"name\": \"plaid\",\n          \"errorCode\": \"<string>\",\n          \"errorType\": \"<string>\",\n          \"requestId\": \"<string>\"\n        }\n      },\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"header\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:34.000Z",
+              "updatedAt": "2026-07-28T02:16:34.000Z",
+              "uid": "35240-510ccea0-1f41-46c5-8886-ac3e3b035dea"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:34.000Z",
+          "updatedAt": "2026-07-28T02:16:34.000Z",
+          "uid": "35240-0c272a36-6e0c-4c09-9a54-89ae96382746"
+        }
+      ],
+      "id": "01c13242-810d-48c3-955f-ca6a9f978449",
+      "createdAt": "2026-07-28T02:16:34.000Z",
+      "updatedAt": "2026-07-28T02:16:34.000Z",
+      "uid": "35240-01c13242-810d-48c3-955f-ca6a9f978449"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.natural.com"
+    }
+  ]
+}

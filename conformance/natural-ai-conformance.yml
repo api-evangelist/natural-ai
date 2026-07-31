@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/natural-ai-openapi-original.json + https://docs.natural.com/guides/overview/security
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.1 authorization server metadata at /.well-known/oauth-authorization-server (authorizationCode + PKCE S256)
+- id: oauth2-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint advertised (RFC 7591)
+- id: pkce
+  conforms: true
+  evidence: code_challenge_methods_supported [S256]
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200
+- id: json:api
+  conforms: true
+  evidence: request/response use JSON:API data/meta envelope and errors[] array
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use JSON:API errors[] envelope, not application/problem+json
+- id: idempotency-key
+  conforms: true
+  evidence: Idempotency-Key header required on mutating endpoints (IETF idempotency-key draft)
+- id: cursor-pagination
+  conforms: true
+  evidence: cursor + limit params, opaque nextCursor
+- id: pci-dss
+  conforms: true
+  evidence: Voice/card capture documented as PCI-compliant; Natural handles PCI data
+- id: fdic-pass-through
+  conforms: true
+  evidence: Wallet funds held in FDIC-insured accounts via Column N.A., Member FDIC (pass-through)
+- id: tls1.3
+  conforms: true
+  evidence: all API traffic encrypted in transit with TLS 1.3
+compliance_program:
+  pci_dss: true
+  encryption_at_rest: AES-256 via dedicated auto-rotating AWS KMS keys; field-level encryption for SSN/TIN/bank numbers
+  data_residency: Amazon Aurora PostgreSQL, multi-AZ
+  docs: https://docs.natural.com/guides/overview/security
+notes:
+- No SOC 2 / ISO 27001 / HIPAA / FedRAMP certification was published at probe time.

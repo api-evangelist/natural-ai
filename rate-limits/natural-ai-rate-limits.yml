@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/api-reference/rate-limits
+algorithm: token bucket
+scope: per credential (authenticated); per client IP (unauthenticated endpoints)
+headers:
+- name: X-RateLimit-Limit
+  description: Maximum requests allowed in the current window
+- name: X-RateLimit-Remaining
+  description: Requests remaining in the current window
+- name: X-RateLimit-Reset
+  description: Unix epoch seconds when the window resets
+- name: Retry-After
+  description: Seconds to wait before retrying (on 429)
+over_limit:
+  status: 429
+  code: rate_limited
+  guidance: Back off and retry with exponential delay.
+published_limits: none
+notes:
+- Natural publishes the signaling headers and algorithm but not numeric per-window limits.

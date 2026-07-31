@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.natural.com/api-reference/authentication
+docs: https://docs.natural.com/api-reference/authentication
+summary:
+  types: [http, oauth2]
+  http_schemes: [bearer]
+  oauth2_flows: [authorizationCode]
+  credential_modes: [api-key, agent-key, user-scoped-oauth, agent-scoped-oauth]
+schemes:
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  source: openapi/natural-ai-openapi-original.json
+  description: >-
+    Bearer authentication. Send an API key, agent key, or OAuth access token as
+    Authorization: Bearer <credential>.
+- name: OAuth2
+  type: oauth2
+  source: https://api.natural.com/.well-known/oauth-authorization-server
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.natural.com/oauth/authorize
+    tokenUrl: https://api.natural.com/oauth/token
+    registrationUrl: https://api.natural.com/oauth/register
+    revocationUrl: https://api.natural.com/oauth/revoke
+    pkce: S256
+    token_endpoint_auth: none
+credential_modes:
+- mode: api-key
+  prefix: sk_ntl_
+  format: sk_ntl_{environment}_{secret}
+  environments: [prod]
+  acts_as: your party
+  scopable: true
+- mode: agent-key
+  prefix: ak_ntl_
+  format: ak_ntl_{environment}_{secret}
+  acts_as: one specific bound agent, verified by the credential
+- mode: user-scoped-oauth
+  flow: browser OAuth consent
+  acts_as: the authorizing user/party
+- mode: agent-scoped-oauth
+  flow: browser OAuth consent
+  acts_as: a selected or new agent, verified
+notes:
+- Credentials are scoped and can never exceed the issuing party's permissions.
+- Keys are high-entropy, shown once, stored only as one-way hashes.
+- OAuth uses 2.1 with PKCE and short-lived access tokens; access tokens signed by AWS KMS.
+- Agent-attributed money movement requires an X-Instance-ID header.

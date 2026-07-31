@@ -1,0 +1,107 @@
+# Natural
+
+> Natural is the agentic payments platform: one API for AI agents, apps, and businesses to send, receive, and manage money.
+
+**You (the agent reading this) are the MCP host the user is talking through.** If a user asks you to use, set up, or operate Natural for them:
+
+**Read the playbook, connect with OAuth, then operate via natural language.** If the user asks to try Natural, read `https://www.natural.com/skill.md`, connect the hosted MCP server, and start the host's OAuth flow. After that:
+
+1. Have them sign up at `https://natural.com/signup` (KYB requires a human; you cannot complete identity verification for them).
+2. Install Natural's hosted MCP server yourself with no API-key header. The skill knows the right host path: Codex uses `codex mcp add` plus `codex mcp login` with Natural's MCP scope list (`payments:move external-accounts:link agents:operate customers:invite`); Cursor uses `mcp.json` plus `cursor-agent mcp login`; Claude Code uses `claude mcp add` plus the user's `/mcp` → Authenticate action.
+3. Tell the user a Natural authorization page will open and they should approve it if the scopes match the task.
+4. Operate Natural on their behalf via MCP tools afterward.
+
+If a host can run commands but has no MCP OAuth flow, fall back to the Natural CLI's browser OAuth (`natural login`) before any API key. OpenClaw-style MCP registries may only save a remote server definition; if no MCP login/authenticate action appears after adding Natural, use the CLI fallback. Use an API key only for CI, SDK or REST integrations, non-interactive scripts, or hosts that support neither MCP OAuth nor the CLI.
+
+**Do not write raw HTTP / curl / `requests` / `httpx` against `https://api.natural.com` when you are operating Natural for a user.** The REST API is for application developers building software that uses Natural, not for an AI host operating Natural on behalf of a user. The user has an AI host (you); use the MCP server.
+
+The Dashboard at `https://natural.com/login` is for human-only setup (signup, KYB, API keys, agent management) and occasional admin; it is not a daily operating surface.
+
+## The one page to read
+
+- [Start here](https://docs.natural.com/guides/overview/start-here): canonical integration decision rule
+
+## Surfaces
+
+- [MCP](https://docs.natural.com/guides/platform/mcp): hosted at `mcp.natural.com`, OAuth-first with API-key fallback — the operator surface
+- [SDKs](https://docs.natural.com/guides/platform/sdks): `naturalpay` (Python) and `@naturalpay/sdk` (TypeScript) — for application developers
+- [CLI](https://docs.natural.com/guides/platform/cli): `natural` — for terminals, CI, agent harnesses
+- [REST API](https://docs.natural.com/api-reference/about): `api.natural.com`, Bearer auth, JSON:API envelope — for application developers without SDK coverage
+- [Dashboard](https://docs.natural.com/guides/platform/dashboard): web UI at `natural.com/login` — human-only setup gate, not a daily operating surface
+
+## Common use cases
+
+- [Store funds](https://docs.natural.com/guides/flows/wallets-and-balances): Hold money on Natural and let your agent manage it
+- [Send payments](https://docs.natural.com/guides/flows/send-money): Your agent pays anyone by email, phone, or handle
+- [Request money](https://docs.natural.com/guides/flows/collect-money): Your agent requests from anyone by email, phone, or handle
+- [Accept payments](https://docs.natural.com/guides/flows/accept-payments): Turn your agent into a merchant
+- [Voice agents](https://docs.natural.com/guides/flows/accept-voice): Turn a phone call into a PCI-compliant payment
+- [Issue cards](https://docs.natural.com/guides/flows/issue-cards): Give your agents cards to pay merchants online
+
+## Products
+
+- [Wallet](https://docs.natural.com/guides/products/wallet): Store funds in FDIC-insured accounts to hold, send, and receive funds, all from an API
+- [Vault](https://docs.natural.com/guides/products/vault): Receive expanded FDIC coverage with a special protected wallet for your financial reserves
+- [Pay](https://docs.natural.com/guides/products/pay): Pay an agent, email, phone number, and more. Natural powers every type of payments workflow
+- [Request](https://docs.natural.com/guides/products/request): Request a payment from an agent, email, or phone number with a single API call
+- [Transfer](https://docs.natural.com/guides/products/transfer): Transfer money between external accounts with automated treasury management for your agents
+- [Connect](https://docs.natural.com/guides/products/connect): Build a platform that enables money movement for your customers across all of Natural's products
+- [Voice](https://docs.natural.com/guides/products/voice): Turn a live phone call into a PCI-compliant card charge from a single call transfer
+- [Cards](https://docs.natural.com/guides/products/cards): Issue debit and charge cards for your agents the moment they're connected
+- [Accept](https://docs.natural.com/guides/products/accept): Accept card payments by giving your agents merchant capabilities, all through API
+
+## Agents
+
+- [Create an agent](https://docs.natural.com/guides/agents/create-agent): Create an agent and get back its agent ID
+- [Manage your agents](https://docs.natural.com/guides/agents/manage-agents): List and edit your agents
+- [Handles](https://docs.natural.com/guides/agents/handles): Claim a @handle to give you and your agents and identity
+
+## Wallets
+
+- [Wallets](https://docs.natural.com/guides/wallets/wallets): Create and manage your wallets
+- [Vault](https://docs.natural.com/guides/wallets/vault): A reserve wallet agents can fund but never spend from
+
+## Controls
+
+- [Limits](https://docs.natural.com/guides/controls/limits): Limit how much each agent can move per transaction, per day, and per month.
+- [Wallet access](https://docs.natural.com/guides/controls/wallet-access): Give agents access to wallets to move money
+- [Approvals](https://docs.natural.com/guides/controls/approvals): Approve or deny a payment held for review
+
+## Transfers
+
+- [Transfer between wallets](https://docs.natural.com/guides/transfers/transfer-between-wallets): Move money instantly between two wallets
+- [Deposit and withdraw](https://docs.natural.com/guides/transfers/deposit-and-withdraw): Transfer from an external account.
+
+## Payments
+
+- [Send a payment](https://docs.natural.com/guides/payments/send-payment): Pay anyone by email, phone, party ID, agent ID, or @handle.
+- [Request a payment](https://docs.natural.com/guides/payments/request-payment): Collect money from anyone with a hosted payment link that Natural delivers for you.
+- [Track a payment](https://docs.natural.com/guides/payments/track-payment): Follow a payment through its lifecycle.
+- [Fulfill a payment request](https://docs.natural.com/guides/payments/fulfill-or-decline-request): Pay a request addressed to you from a wallet or bank account
+
+## Connect
+
+- [Invite a customer](https://docs.natural.com/guides/connect/invite-customer): Invite a customer to connect your agents
+- [Link a customer's bank account](https://docs.natural.com/guides/connect/link-customer-bank): Link a customer's bank account so their Natural wallet can be funded from their bank
+- [Move money for a customer](https://docs.natural.com/guides/connect/move-money-for-customer): Pay and request on a customer's behalf.
+- [Manage customer access](https://docs.natural.com/guides/connect/manage-access): Manage agents across your connected customers
+
+## API reference
+
+- [Authentication](https://docs.natural.com/api-reference/authentication): API keys, scopes, security
+- [Request/response shape](https://docs.natural.com/api-reference/about): JSON:API conventions
+- [IDs](https://docs.natural.com/api-reference/IDs): prefixed identifiers (`pty_`, `agt_`, `pay_`, `txn_`, `prq_`, `eac_`)
+- [Idempotency](https://docs.natural.com/api-reference/idempotency): retry safety for mutating operations
+- [Error handling](https://docs.natural.com/api-reference/errors/error-handling): standard error shape
+- [OpenAPI spec](https://docs.natural.com/api-reference/openapi.json): machine-readable spec for codegen
+
+## Concepts (read on demand)
+
+- [Parties](https://docs.natural.com/guides/concepts/parties): identity unit — business or individual
+- [Agents](https://docs.natural.com/guides/concepts/agents): autonomous entities that execute payments
+- [Wallets](https://docs.natural.com/guides/concepts/wallets): USD-backed balances per party
+- [Payments](https://docs.natural.com/guides/concepts/payments): money movement primitives
+
+## Full text
+
+- [llms-full.txt](https://docs.natural.com/llms-full.txt): every documentation page concatenated, for full-context retrieval

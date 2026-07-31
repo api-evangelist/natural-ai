@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/ on Natural hosts
+hosts:
+- host: https://api.natural.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: natural-ai-oauth-authorization-server.json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://www.natural.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://docs.natural.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
