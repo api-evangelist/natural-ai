@@ -219,7 +219,7 @@ common:
 - type: GitHubOrganization
   url: https://github.com/naturalpay
 - type: OpenAPI
-  url: openapi/natural-ai-openapi-original.json
+  url: openapi/_original/natural-ai-openapi-original.json
 - type: Overlay
   url: overlays/natural-ai-openapi-overlay.yaml
 - type: Authentication
