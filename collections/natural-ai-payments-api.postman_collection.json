@@ -1,0 +1,4087 @@
+{
+  "item": [
+    {
+      "id": "516b46dd-49fc-4f7b-aefb-2c78e5a8fddb",
+      "name": "Payments",
+      "description": {
+        "content": "Payment management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27c33450-94f2-44cd-a99f-c0ab1c262e22",
+          "name": "Create payment",
+          "request": {
+            "name": "Create payment",
+            "description": {
+              "content": "Create a payment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": \"<integer>\",\n      \"counterparty\": {\n        \"type\": \"<string>\",\n        \"value\": \"<email>\"\n      },\n      \"customerPartyId\": \"<string>\",\n      \"currency\": \"USD\",\n      \"description\": \"<string>\",\n      \"walletId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f83269d9-30b9-4310-be7e-3026440027af",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"payment\",\n    \"id\": \"pay_550e8400e29b41d4a716446655440000\",\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"status\": \"PROCESSING\",\n      \"description\": \"Payment for Q4 2025 development work\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"updatedAt\": \"2026-01-04T15:30:00Z\"\n    },\n    \"relationships\": {\n      \"sender\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d617f65a79cb965dda9eac3\"\n        }\n      },\n      \"senderAgent\": {\n        \"data\": null\n      },\n      \"recipient\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n        }\n      },\n      \"recipientAgent\": {\n        \"data\": null\n      },\n      \"transaction\": {\n        \"data\": {\n          \"type\": \"transaction\",\n          \"id\": \"txn_550e8400e29b41d4a716446655440000\"\n        }\n      },\n      \"paymentRequest\": {\n        \"data\": null\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd73892c-cd4f-40a4-8621-3e92453ac562",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47511f94-c6a7-4aec-b41f-74783139ee2a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "546956e9-cb55-4448-8a33-33c8920a909e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7beea661-5444-41d7-82f8-7a8c1aa31201",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26b7cf49-bc88-4056-a872-c9e802e86138",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2766612-425d-4524-bf20-0afd392ec90a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "710e349d-6522-4335-9235-9f089f321fa2",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37cfcc80-e9ce-4b58-b45c-8fb7c7868a44",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28b6549b-b468-4b4c-8e2a-71b5ce7e6e6f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c4ea9c-01b1-4722-a7ea-c10d07bcbeb7",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5f37dd4-7fed-4137-ab9c-3a13cc732b34",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b78f713-fd01-4784-9fd3-b700f7ba67c9",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"counterparty\": {\n        \"type\": \"party_id\",\n        \"value\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n      },\n      \"customerPartyId\": \"pty_019cd1798d617f65a79cb965dda9eac3\",\n      \"description\": \"Payment for Q4 2025 development work\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a32b6585-33d7-4ec9-a83a-43fdec724d9e",
+          "name": "List payments",
+          "request": {
+            "name": "List payments",
+            "description": {
+              "content": "List sent payments",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "partyId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fff184f5-2aa0-4823-98b0-b7fabfae4cd5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"payment\",\n      \"id\": \"pay_550e8400e29b41d4a716446655440000\",\n      \"attributes\": {\n        \"amount\": 500000,\n        \"currency\": \"USD\",\n        \"status\": \"PROCESSING\",\n        \"description\": \"Payment for Q4 2025 development work\",\n        \"createdAt\": \"2026-01-04T15:30:00Z\",\n        \"updatedAt\": \"2026-01-04T15:30:00Z\"\n      },\n      \"relationships\": {\n        \"sender\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_019cd1798d617f65a79cb965dda9eac3\"\n          }\n        },\n        \"senderAgent\": {\n          \"data\": null\n        },\n        \"recipient\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n          }\n        },\n        \"recipientAgent\": {\n          \"data\": null\n        },\n        \"transaction\": {\n          \"data\": {\n            \"type\": \"transaction\",\n            \"id\": \"txn_550e8400e29b41d4a716446655440000\"\n          }\n        },\n        \"paymentRequest\": {\n          \"data\": null\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"hasMore\": false,\n      \"nextCursor\": null\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7270bc36-fe25-4037-ad75-7f5d4b5a11be",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3069e19d-dd32-404f-906f-427136687f94",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0993e75a-24d0-406e-a3d2-6009329624e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "144443e8-86d6-4add-99b8-494f2a1959f2",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a428c90-ba4a-4555-b64f-0850075a44fb",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b71a83-2ea4-45c9-92f3-da1b5f2ab27b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f390f99-ae6c-4767-905d-1d460d12d157",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7899d465-c9fc-4ee5-a29f-98de40c0b43c",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63fd2856-ba60-4af8-9c52-8101915c6246",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac41d109-1ad1-4345-ab34-946d4fc78e33",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2de35744-53c3-4b41-adc7-68712a3b76c9",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f62f2fb6-32fc-41d0-a5eb-c92604645b1a",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "382319f9-74e6-403d-a9ae-d8d279903cf7",
+          "name": "Get payment",
+          "request": {
+            "name": "Get payment",
+            "description": {
+              "content": "Get a sent payment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "partyId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e60deef5-8443-4737-8f8c-9af6d1534fdb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"payment\",\n    \"id\": \"pay_550e8400e29b41d4a716446655440000\",\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"status\": \"PROCESSING\",\n      \"description\": \"Payment for Q4 2025 development work\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"updatedAt\": \"2026-01-04T15:30:00Z\"\n    },\n    \"relationships\": {\n      \"sender\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d617f65a79cb965dda9eac3\"\n        }\n      },\n      \"senderAgent\": {\n        \"data\": null\n      },\n      \"recipient\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n        }\n      },\n      \"recipientAgent\": {\n        \"data\": null\n      },\n      \"transaction\": {\n        \"data\": {\n          \"type\": \"transaction\",\n          \"id\": \"txn_550e8400e29b41d4a716446655440000\"\n        }\n      },\n      \"paymentRequest\": {\n        \"data\": null\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8b6b853-bd08-4b81-a565-226520aef4b8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91baf7ad-99ab-47a1-8c5e-a63cc0305669",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b5cdcf1-b935-4e5d-997a-3e7b2115a886",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "639268da-4a8a-4e28-bbf8-3f310401115b",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66073af7-8b13-4cb7-a473-f59eaede5407",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb61c0c-f5be-4a8e-ab6a-945de1b7677b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1749206d-6e69-4068-a5b3-2c2e68d7bb7d",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9febc6b-cc0d-4f81-b8b8-d7a9fd09077f",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50df3032-fd53-4d12-a129-49dad30a12b1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "051678cc-d03d-4ffb-9194-27c9a84e23a1",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ef3df16-01e3-456a-ae0c-18c2f6980a21",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fb88141-0b6a-4f73-872b-cf6839aa0bf0",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c46b078-f518-4b1c-936e-cedba9229ac2",
+          "name": "Cancel payment",
+          "request": {
+            "name": "Cancel payment",
+            "description": {
+              "content": "Cancel a payment before the recipient begins claiming it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":paymentId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a6eb8260-5230-4c13-ac48-65115c52404a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"payment\",\n    \"id\": \"pay_550e8400e29b41d4a716446655440000\",\n    \"attributes\": {\n      \"amount\": 500000,\n      \"currency\": \"USD\",\n      \"status\": \"CANCELED\",\n      \"description\": \"Payment for Q4 2025 development work\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"updatedAt\": \"2026-01-04T15:35:00Z\"\n    },\n    \"relationships\": {\n      \"sender\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d617f65a79cb965dda9eac3\"\n        }\n      },\n      \"senderAgent\": {\n        \"data\": null\n      },\n      \"recipient\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_019cd1798d627ad9bc302511c4f2c115\"\n        }\n      },\n      \"recipientAgent\": {\n        \"data\": null\n      },\n      \"transaction\": {\n        \"data\": {\n          \"type\": \"transaction\",\n          \"id\": \"txn_550e8400e29b41d4a716446655440000\"\n        }\n      },\n      \"paymentRequest\": {\n        \"data\": null\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8774258a-f16c-4c82-8c15-b9e3d8f20d46",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d0ce672-2ab4-4c52-82f6-f8ce021ebbb7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a705bb1c-d6d0-4bba-aada-8987c7762312",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00c5de47-56ac-4b75-874c-e0d4fb4ed28c",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed4f046f-50e9-4647-80f0-49e362045b49",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29240c0e-2f1d-4ce4-ba33-5feb33f5ac75",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca470e0b-67ec-46af-8d5e-b8478683801b",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0bfb749-10fa-4d05-ba79-8e1d521bdd39",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4813"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "4813"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe7acd00-a5e4-4a99-93f0-04b4b0113d0d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "653ea445-1770-446a-b442-c52d2a195311",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "659c03f0-75d9-47c7-80be-cff1aed3b1ab",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "566d3c9a-a855-42ae-8e34-b10946d82ac7",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.natural.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c5b076b-eafa-4da8-a066-da3ab330e446",
+    "name": "Natural Agent Keys Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Natural's payments API for autonomous agents.\n\n**Base URL:** `https://api.natural.com`\n\nAI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.\n\nFor support: support@natural.com",
+      "type": "text/plain"
+    }
+  }
+}

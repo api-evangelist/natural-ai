@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Natural Agent Keys Agents API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/agents",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List agents"
+        },
+        {
+          "info": {
+            "name": "Create agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/agents",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create an agent"
+        },
+        {
+          "info": {
+            "name": "Get agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/agents/:agentId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get an agent"
+        },
+        {
+          "info": {
+            "name": "Update agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.natural.com/agents/:agentId",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an agent's mutable fields; a slug renames the handle and can never be cleared"
+        },
+        {
+          "info": {
+            "name": "Delete agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.natural.com/agents/:agentId",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an agent and revoke its active customer authorizations and pending invitations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

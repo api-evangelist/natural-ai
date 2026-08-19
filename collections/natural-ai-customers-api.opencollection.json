@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Natural Agent Keys Customers API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/customers",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List customers who have authorized an agent to act for them"
+        },
+        {
+          "info": {
+            "name": "Get customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/customers/:customerId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a customer who has authorized an agent"
+        },
+        {
+          "info": {
+            "name": "List customer invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/customers/invitations",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List pending customer invitations"
+        },
+        {
+          "info": {
+            "name": "Invite customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/customers/invitations",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Invite customers to connect with an agent"
+        },
+        {
+          "info": {
+            "name": "Revoke customer invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.natural.com/customers/invitations/:invitationId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "invitationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Revoke a pending customer invitation"
+        },
+        {
+          "info": {
+            "name": "Revoke agent access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.natural.com/customers/:customerId/agents/:agentId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove an agent's access to a customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

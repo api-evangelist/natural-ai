@@ -11,12 +11,20 @@ server:
     default: oauth
     oauth: browser OAuth 2.1 + PKCE (no API key header); user-scoped or agent-scoped consent
     fallback: Bearer API key (sk_ntl_) or agent key (ak_ntl_)
-    scopes: [payments:move, external-accounts:link, agents:operate, customers:invite]
-  hosts_supported: [Claude, Claude Code, ChatGPT, Codex, Cursor]
-  notes: >-
-    Natural runs a hosted MCP server exposing 24 intent-shaped tools. Each tool
-    handles orchestration (wallet selection, payer-type detection). Money-moving
-    tools require instanceId per run for agent attribution.
+    scopes:
+    - payments:move
+    - external-accounts:link
+    - agents:operate
+    - customers:invite
+  hosts_supported:
+  - Claude
+  - Claude Code
+  - ChatGPT
+  - Codex
+  - Cursor
+  notes: Natural runs a hosted MCP server exposing 24 intent-shaped tools. Each tool handles orchestration
+    (wallet selection, payer-type detection). Money-moving tools require instanceId per run for agent
+    attribution.
 tools:
 - name: get_transaction_status
   description: Look up a single payment or transfer by id (pay_* or trf_*)
@@ -66,3 +74,10 @@ tools:
   description: Send a customer invitation by email
 - name: get_funding_options
   description: Linked bank accounts + ACH push-to-wallet instructions in one view
+deployment:
+  mode: remote
+  endpoint: https://mcp.natural.com
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

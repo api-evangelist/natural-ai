@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Natural Agent Keys Payments API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/payments",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "partyId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List sent payments"
+        },
+        {
+          "info": {
+            "name": "Create payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/payments",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a payment"
+        },
+        {
+          "info": {
+            "name": "Get payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/payments/:paymentId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "partyId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a sent payment"
+        },
+        {
+          "info": {
+            "name": "Cancel payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/payments/:paymentId/cancel",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel a payment before the recipient begins claiming it"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

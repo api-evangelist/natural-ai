@@ -1,0 +1,2980 @@
+{
+  "item": [
+    {
+      "id": "a7420f86-c87f-4d91-bf3a-34faa1911350",
+      "name": "Invitations",
+      "description": {
+        "content": "Party invitation management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0893619f-4b2b-462f-b770-9275ded91984",
+          "name": "Create party invitations",
+          "request": {
+            "name": "Create party invitations",
+            "description": {
+              "content": "Invite people to join the party. Available for business parties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "party-invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"<email>\",\n          \"role\": \"<string>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"role\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84ca8475-939d-4864-bf1b-a5d98b4605ce",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"invitation\",\n      \"id\": \"inv_019cd4a832f37c4b8a1d63e94b7c8d12\",\n      \"attributes\": {\n        \"email\": \"engineer@velocitylogistics.com\",\n        \"role\": \"MEMBER\",\n        \"status\": \"PENDING\",\n        \"expiresAt\": \"2026-01-11T15:30:00Z\",\n        \"createdAt\": \"2026-01-04T15:30:00Z\",\n        \"acceptedAt\": null\n      }\n    }\n  ],\n  \"meta\": {\n    \"failed\": [\n      {\n        \"email\": \"cfo@velocitylogistics.com\",\n        \"error\": \"User is already a member of this party\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4af6a458-73d5-4d03-8189-3fc525f76106",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec53c76-473a-4f56-9980-15dfc26147e8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea2064e6-3aa2-49bd-b3dd-c3c8b1525f8f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a262bc-0eef-4317-aaf1-00102487c5d6",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e95058a-9d66-4ddf-a882-27b3dbaa9018",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bc01c3c-1f82-4f33-80c2-c69c3f3685e5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1cd6c56-d21f-4b16-9f37-03ba961aed55",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0b606e3-f46e-48b9-b562-5d9818628e9b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52e6212c-9184-4ef6-9d77-da1fef224d5f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d074838e-5243-47e3-8353-799c80433cfe",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daa5c946-4361-481c-be36-9c55c5af3f5c",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5083ef41-83b7-4501-896b-6cefb4126564",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"invitations\": [\n        {\n          \"email\": \"engineer@velocitylogistics.com\",\n          \"role\": \"MEMBER\"\n        },\n        {\n          \"email\": \"cfo@velocitylogistics.com\",\n          \"role\": \"ADMIN\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c34790ac-7c41-46a7-a4e7-631213d4179f",
+          "name": "List party invitations",
+          "request": {
+            "name": "List party invitations",
+            "description": {
+              "content": "List party invitations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "party-invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "partyId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "554ccc76-65fb-41c9-bcf8-23674fff0bc0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"invitation\",\n      \"id\": \"inv_019cd4a832f37c4b8a1d63e94b7c8d12\",\n      \"attributes\": {\n        \"email\": \"engineer@velocitylogistics.com\",\n        \"role\": \"MEMBER\",\n        \"status\": \"PENDING\",\n        \"expiresAt\": \"2026-01-11T15:30:00Z\",\n        \"createdAt\": \"2026-01-04T15:30:00Z\",\n        \"acceptedAt\": null\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"hasMore\": false,\n      \"nextCursor\": null\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b13ca0fe-00d4-46a0-9c8c-66d897eec90a",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f227a68-b114-4910-8cc9-9a856b21e6e2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "111ec6c7-0064-4c1c-972f-4b12dc502bcd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6af6f27d-fdf9-48a3-8367-718c0305d4c4",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "575167ff-7d2d-4c3c-8ba6-b9322a83891e",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc1c29d9-8530-493b-b76b-b83e18ea25c3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "749c0a1d-c2fb-4d34-a888-2a123420ddbc",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e2dcf7d-8f90-428c-9270-2769d36db503",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fb1993c-5812-4ec0-ad82-ae2aa47a7328",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e264b8ac-9086-428d-912c-9f032d8819c1",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eee95489-e2b2-4749-9db9-436cd1d878a1",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d08e1d27-903c-4955-b66f-c311d5816908",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b68dc07-d6b0-4268-bbd1-1ef0d54ce27e",
+          "name": "Revoke party invitation",
+          "request": {
+            "name": "Revoke party invitation",
+            "description": {
+              "content": "Revoke a pending party invitation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "party-invitations",
+                ":invitationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invitationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9658791c-5fab-4ce0-a350-8f621e4cebdd",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"invitation\",\n    \"id\": \"inv_019cd4a832f37c4b8a1d63e94b7c8d12\",\n    \"attributes\": {\n      \"email\": \"engineer@velocitylogistics.com\",\n      \"role\": \"MEMBER\",\n      \"status\": \"REVOKED\",\n      \"expiresAt\": \"2026-01-11T15:30:00Z\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"acceptedAt\": null\n    }\n  },\n  \"meta\": {\n    \"deleted\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf768806-2dd5-4c6d-9a7b-236d06ddee19",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ad22a87-bfe6-472f-894b-8d11fc3becf2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5dff0b1-11bb-4260-bc8a-2c481aac2f32",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0258383-c499-4b00-8058-7dbc41b22a91",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db0b3585-90de-47c5-a7b3-416a852e1d44",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30fb59fd-137a-473b-a7df-48c06299724d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee3058dc-cc09-4522-94bc-9f3136227dca",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "852ce718-6724-4321-b91d-ddc0ac1513a2",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1404"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1404"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e5f3b65-8293-4205-966c-b541276806ca",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ece647fc-cd99-4e06-b5f8-fae39d5adc65",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69dc73aa-05df-46db-a41b-4447a8c7a425",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de1eae98-4a0c-480d-a16d-80b2f7c2dd8d",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "party-invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invitationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.natural.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fb60ba33-a6a5-4c50-895b-3d9259787550",
+    "name": "Natural Agent Keys Invitations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Natural's payments API for autonomous agents.\n\n**Base URL:** `https://api.natural.com`\n\nAI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.\n\nFor support: support@natural.com",
+      "type": "text/plain"
+    }
+  }
+}

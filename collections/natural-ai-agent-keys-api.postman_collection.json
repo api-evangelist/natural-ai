@@ -1,0 +1,4133 @@
+{
+  "item": [
+    {
+      "id": "49bf6b7e-c5e9-4802-ad33-d5f6e4879716",
+      "name": "Agent Keys",
+      "description": {
+        "content": "Agent key management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "495c80aa-d26e-4b56-9d53-a560c742b9e3",
+          "name": "List agent keys",
+          "request": {
+            "name": "List agent keys",
+            "description": {
+              "content": "List agent keys",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agent-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agentId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "341f66fb-8372-4f8f-902e-aee930434ffb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"agentKey\",\n      \"id\": \"agk_550e8400e29b41d4a716446655440000\",\n      \"attributes\": {\n        \"agentKeyPrefix\": \"ak_ntl_prod_sxHp_FRoRTnDEmEH\",\n        \"status\": \"ACTIVE\",\n        \"createdAt\": \"2026-01-04T15:30:00Z\",\n        \"lastUsedAt\": null,\n        \"revokedAt\": null,\n        \"createdBy\": \"usr_550e8400e29b41d4a716446655440000\",\n        \"revokedBy\": null,\n        \"expiresAt\": null\n      },\n      \"relationships\": {\n        \"party\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_7c9e6679e29b41d4a716446655440001\"\n          }\n        },\n        \"agent\": {\n          \"data\": {\n            \"type\": \"agent\",\n            \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"agentKey\",\n      \"id\": \"agk_7f8e4d0012a64ef3bca4d21e44a5c001\",\n      \"attributes\": {\n        \"agentKeyPrefix\": \"ak_ntl_prod_Ab12Cd34Ef56Gh78\",\n        \"status\": \"ACTIVE\",\n        \"createdAt\": \"2026-01-05T09:00:00Z\",\n        \"lastUsedAt\": null,\n        \"revokedAt\": null,\n        \"createdBy\": \"usr_550e8400e29b41d4a716446655440000\",\n        \"revokedBy\": null,\n        \"expiresAt\": null\n      },\n      \"relationships\": {\n        \"party\": {\n          \"data\": {\n            \"type\": \"party\",\n            \"id\": \"pty_7c9e6679e29b41d4a716446655440001\"\n          }\n        },\n        \"agent\": {\n          \"data\": {\n            \"type\": \"agent\",\n            \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"hasMore\": false,\n      \"nextCursor\": null\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb99d383-7613-40a9-b7fb-a1a7cef4a264",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b968c05-5e74-4efa-87e9-fd5ac2a6848a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a29fb5a8-e92f-4c08-93ba-257ad5f80c23",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "270b99b0-f2ee-4665-9e85-f0692387808b",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff86fba9-d645-4dcc-88a9-00bc619098fb",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27ef9b92-696e-458f-ad27-be3e3649afee",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f54a1399-c70e-44c2-a8f9-914651744955",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e82cece-2fab-43a6-9f8e-4512c1b7d10c",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7728718d-dc15-438e-94a6-77a829f35936",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d84196a-612a-42a0-bf20-3064efa0e9ba",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1acc6871-c556-4df5-a8bc-d0ae0f4b25fc",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8602ea0-3255-4b62-9e72-c3f8b604aa04",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d65375bc-212a-4eab-929b-1b6241f3cc5c",
+          "name": "Create agent key",
+          "request": {
+            "name": "Create agent key",
+            "description": {
+              "content": "Create an agent key for an agent. The secret is returned only once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agent-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe46125b-566b-4da0-9709-cf89d3952633",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"agentKey\",\n    \"id\": \"agk_550e8400e29b41d4a716446655440000\",\n    \"attributes\": {\n      \"agentKeyPrefix\": \"ak_ntl_prod_sxHp_FRoRTnDEmEH\",\n      \"status\": \"ACTIVE\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"lastUsedAt\": null,\n      \"revokedAt\": null,\n      \"createdBy\": \"usr_550e8400e29b41d4a716446655440000\",\n      \"revokedBy\": null,\n      \"expiresAt\": null,\n      \"agentKey\": \"ak_ntl_prod_sxHp_FRoRTnDEmEHD8FKVJg7P0d3UJMSWCtzQe9GBxk\"\n    },\n    \"relationships\": {\n      \"party\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_7c9e6679e29b41d4a716446655440001\"\n        }\n      },\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a365c731-0fd8-4735-83b4-9a9abfb03fd2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9586538-f858-4c83-849a-1365a9386739",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d33bda9c-3802-49c0-932c-b782fdeea78c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fabdc657-f90e-4355-a09f-bdcd50544c91",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63bc0d2b-d09f-4dac-85bf-a0609414611a",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14cb3714-911e-4277-8eea-bedd2f8ee0c0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85799eba-35d4-4ab7-97d7-f53e91e18aa8",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2762bece-9c64-4c59-9850-5750e0b824af",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c695d17e-a36e-45d8-a883-dfd865922484",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5954d39d-0e45-4646-8954-ca8770f992dc",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfc10819-f0a9-4382-8bfc-d4a1742a6b9d",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06baae11-0600-4dba-9537-d3421144f354",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {},\n    \"relationships\": {\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a8fd932-a443-4c9f-a468-f6dd9edda6d6",
+          "name": "Revoke agent key",
+          "request": {
+            "name": "Revoke agent key",
+            "description": {
+              "content": "Revoke an agent key immediately without issuing a replacement. Other active keys for the same agent keep working.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agent-keys",
+                ":keyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d703f798-1619-42d7-9ec7-410b1bf78450",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"agentKey\",\n    \"id\": \"agk_550e8400e29b41d4a716446655440000\",\n    \"attributes\": {\n      \"agentKeyPrefix\": \"ak_ntl_prod_sxHp_FRoRTnDEmEH\",\n      \"status\": \"REVOKED\",\n      \"createdAt\": \"2026-01-04T15:30:00Z\",\n      \"lastUsedAt\": null,\n      \"revokedAt\": \"2026-01-06T10:00:00Z\",\n      \"createdBy\": \"usr_550e8400e29b41d4a716446655440000\",\n      \"revokedBy\": \"usr_550e8400e29b41d4a716446655440000\",\n      \"expiresAt\": null\n    },\n    \"relationships\": {\n      \"party\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_7c9e6679e29b41d4a716446655440001\"\n        }\n      },\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  },\n  \"meta\": {\n    \"deleted\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e939ef4-dbc5-42e0-a0ec-3a2aef4038c1",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b9fdb50-b57e-4bf0-a422-0e33942e90d5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48e52605-f3b1-4a44-bd8a-6baaff131b54",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00410dda-ded4-4e6c-910d-e5dd69d3985d",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "968def97-5a76-4a95-abe4-13149f37ef0d",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba32f64b-3d3c-4179-acdf-a3eaade090ec",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bda23fa9-2238-4f55-b88a-bc62aabacf1e",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d436a44-ae03-4318-b23f-280c74937e55",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f065f8fd-b55e-4af8-9f5f-b585b1ecd55a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94e46923-4d06-458d-b6d2-f99003c632e0",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65db3fa7-582a-4946-ae5c-5724560af398",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8293abc6-d389-4808-a4c3-1e7db961d40a",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69630ea7-fe64-43fe-8baa-c8f3a894e2ff",
+          "name": "Rotate agent key",
+          "request": {
+            "name": "Rotate agent key",
+            "description": {
+              "content": "Generate a replacement agent key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "agent-keys",
+                ":keyId",
+                "rotate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                "key": "X-Agent-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                "key": "X-Instance-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82e0be41-c11f-44e0-ae85-646283a0db3f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"agentKey\",\n    \"id\": \"agk_7f8e4d0012a64ef3bca4d21e44a5c001\",\n    \"attributes\": {\n      \"agentKeyPrefix\": \"ak_ntl_prod_Ab12Cd34Ef56Gh78\",\n      \"status\": \"ACTIVE\",\n      \"createdAt\": \"2026-01-06T10:00:00Z\",\n      \"lastUsedAt\": null,\n      \"revokedAt\": null,\n      \"createdBy\": \"usr_550e8400e29b41d4a716446655440000\",\n      \"revokedBy\": null,\n      \"expiresAt\": null,\n      \"agentKey\": \"ak_ntl_prod_Ab12Cd34Ef56Gh78mN90Pq12Rs34Tu56Vw78Xy90Za12Bc34\",\n      \"previousKeyExpiresAt\": \"2026-01-07T10:00:00Z\"\n    },\n    \"relationships\": {\n      \"party\": {\n        \"data\": {\n          \"type\": \"party\",\n          \"id\": \"pty_7c9e6679e29b41d4a716446655440001\"\n        }\n      },\n      \"agent\": {\n        \"data\": {\n          \"type\": \"agent\",\n          \"id\": \"agt_019cd1798d637a4da75dce386343931d\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3137f9c6-92a4-490c-847b-1d985053718e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"400\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8797c7e9-85c5-4409-9ab9-7fa4d339faf3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"unauthenticated\",\n      \"detail\": \"Authentication is required.\",\n      \"status\": \"401\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae46e030-1e9c-4ec6-a6d0-d2a4b94a5afe",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"forbidden\",\n      \"detail\": \"You do not have permission to perform this action.\",\n      \"status\": \"403\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c91e570-032c-43d4-89e8-5044dace0e22",
+              "name": "Not Found. Returned when the resource does not exist, or when it exists but is not accessible to your account. The two cases are intentionally indistinguishable, so that resource IDs cannot be enumerated by probing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_found\",\n      \"detail\": \"The requested resource was not found.\",\n      \"status\": \"404\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5546dde1-6a14-4a71-8c6a-55c8c8853e00",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"conflict\",\n      \"detail\": \"The request conflicts with the current resource state.\",\n      \"status\": \"409\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a99b505-181e-465d-a862-481d17b2faaa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"invalid_value\",\n      \"detail\": \"The information you entered isn't valid. Please check it and try again.\",\n      \"status\": \"422\",\n      \"source\": {\n        \"pointer\": \"/data/attributes/email\"\n      },\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5719226d-5583-45f7-91ae-83fa0e60b162",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"mfa_required\",\n      \"detail\": \"MFA verification required\",\n      \"status\": \"428\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24c4ab55-0bc2-42e2-83f8-c2b24dc693f8",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Maximum requests allowed per window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests remaining in current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "2302"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unix timestamp when rate limit resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "2302"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"rate_limited\",\n      \"detail\": \"Too many requests. Please try again later.\",\n      \"status\": \"429\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7402638e-4441-4ca9-9e95-5354ff60ce23",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"server_error\",\n      \"detail\": \"Something went wrong.\",\n      \"status\": \"500\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "597705fe-3c67-44de-9903-9273fdc66f52",
+              "name": "Not Implemented",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"not_implemented\",\n      \"detail\": \"This operation is not available.\",\n      \"status\": \"501\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8693fbff-81f6-4265-b817-17d039c86dc6",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"bad_gateway\",\n      \"detail\": \"We couldn't complete that request because one of Natural's services returned an unexpected response. Please try again.\",\n      \"status\": \"502\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dc093ec-05a9-440a-be5f-a775e7609358",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "agent-keys",
+                    ":keyId",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Unique key for safely retrying a request without creating duplicates.",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Agent (agt_*) to attribute this request to when authenticating with a party API key; omit for agent keys and agent-scoped OAuth grants, which already carry agent identity.",
+                    "key": "X-Agent-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Caller-chosen identifier for the agent run, session, or conversation, required when an agent moves money.",
+                    "key": "X-Instance-ID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"expiresInSeconds\": 86400\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"service_unavailable\",\n      \"detail\": \"The service is temporarily unavailable.\",\n      \"status\": \"503\",\n      \"meta\": {\n        \"supportId\": \"req_a1b2c3d4e5f6\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.natural.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "68754614-4cb5-4ca9-a5c3-c24565559d42",
+    "name": "Natural Agent Keys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Natural's payments API for autonomous agents.\n\n**Base URL:** `https://api.natural.com`\n\nAI agents, including coding agents, should prefer the hosted MCP server at `https://mcp.natural.com` when an MCP-aware host runs the agent, the Natural CLI for terminal/CI workflows, and the official SDKs for application runtimes they own. Use direct HTTP only for explicit low-level integrations, unsupported SDK gaps, or infrastructure work where REST is required.\n\nFor support: support@natural.com",
+      "type": "text/plain"
+    }
+  }
+}

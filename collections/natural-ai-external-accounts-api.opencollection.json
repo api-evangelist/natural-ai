@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Natural Agent Keys External Accounts API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Link external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/external-accounts/processor-token",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Link or refresh a bank account using a Plaid processor token"
+        },
+        {
+          "info": {
+            "name": "List external accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/external-accounts",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List linked external accounts"
+        },
+        {
+          "info": {
+            "name": "Get external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/external-accounts/:externalAccountId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "externalAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a linked external account"
+        },
+        {
+          "info": {
+            "name": "Remove external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.natural.com/external-accounts/:externalAccountId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "externalAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a linked external account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

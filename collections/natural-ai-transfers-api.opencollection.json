@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Natural Agent Keys Transfers API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/transfers/deposit",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Move funds from a linked bank account into a wallet"
+        },
+        {
+          "info": {
+            "name": "Initiate withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/transfers/withdraw",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Move funds from a wallet to a linked bank account"
+        },
+        {
+          "info": {
+            "name": "Initiate internal transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.natural.com/transfers/internal",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              },
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Move funds between two wallets"
+        },
+        {
+          "info": {
+            "name": "List transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/transfers",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "partyId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List transfers"
+        },
+        {
+          "info": {
+            "name": "Get transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.natural.com/transfers/:transferId",
+            "headers": [
+              {
+                "name": "X-Agent-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Instance-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "partyId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a transfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
