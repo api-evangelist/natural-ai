@@ -34,6 +34,16 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
+- Artificial Intelligence
+- Payments
+- Agents
+- Fintech
+- Money Movement
+- Wallets
+- Agentic Payments
+- MCP
+tags_raw:
+- Company
 - Ai
 - Payments
 - Agents
@@ -70,6 +80,8 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -100,6 +112,8 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -140,6 +154,8 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
+  - Payment Requests
+  tags_raw:
   - PaymentRequests
   properties:
   - type: OpenAPI
@@ -160,6 +176,8 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -190,6 +208,8 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
