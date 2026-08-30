@@ -166,7 +166,7 @@ apis:
   humanURL: https://docs.natural.com/api-reference/about
   baseURL: https://api.natural.com
   tags:
-  - Payment Requests
+  - PaymentRequests
   tags_raw:
   - PaymentRequests
   properties:
