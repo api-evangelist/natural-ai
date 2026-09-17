@@ -160,18 +160,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/natural-ai-parties-api-openapi.yml
-- aid: natural-ai:natural-ai-paymentrequests-api
-  name: Natural AI PaymentRequests API
-  description: Payment request management
-  humanURL: https://docs.natural.com/api-reference/about
-  baseURL: https://api.natural.com
-  tags:
-  - Payment Requests
-  tags_raw:
-  - PaymentRequests
-  properties:
-  - type: OpenAPI
-    url: openapi/natural-ai-paymentrequests-api-openapi.yml
 - aid: natural-ai:natural-ai-payments-api
   name: Natural AI Payments API
   description: Payment management
@@ -226,6 +214,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/natural-ai-webhooks-api-openapi.yml
+- aid: natural-ai:natural-ai-payment-requests-api
+  name: Natural AI Payment Requests API
+  description: Payment request management
+  humanURL: https://docs.natural.com/api-reference/about
+  baseURL: https://api.natural.com
+  tags:
+  - Payment Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/natural-ai-payment-requests-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
