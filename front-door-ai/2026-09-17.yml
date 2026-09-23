@@ -1,0 +1,29 @@
+# Front Door AI Index — natural-ai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: natural-ai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.natural.com
+  final_host: www.natural.com
+  ownership: own
+  owner: natural-ai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 14
+  host_score: 14
+  density: 14.97
+  words: 935
+  tiers:
+    agentic: 10
+    core: 3
+    model: 1
+  ambiguous: 27
+  top_terms:
+    agent: 27
+    agentic: 9
+    AI: 3
+    Claude: 1
+    MCP: 1

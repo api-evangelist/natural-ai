@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Natural Agent Keys Approvals API
+  title: Natural Approvals API
   version: 0.2.0
   description: 'Natural''s payments API for autonomous agents.
 
@@ -23,7 +23,6 @@ paths:
     get:
       operationId: approvals.list
       summary: List approvals
-      description: List approvals
       tags:
       - Approvals
       parameters:

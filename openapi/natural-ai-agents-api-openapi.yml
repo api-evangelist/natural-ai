@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Natural Agent Keys Agents API
+  title: Natural Agents API
   version: 0.2.0
   description: 'Natural''s payments API for autonomous agents.
 
@@ -1427,7 +1427,6 @@ paths:
     get:
       operationId: agents.list
       summary: List agents
-      description: List agents
       tags:
       - Agents
       parameters:

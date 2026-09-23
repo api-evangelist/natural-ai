@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Natural Agent Keys Transfers API
+  title: Natural Transfers API
   version: 0.2.0
   description: 'Natural''s payments API for autonomous agents.
 
@@ -4681,7 +4681,6 @@ paths:
     get:
       operationId: transfers.list
       summary: List transfers
-      description: List transfers
       tags:
       - Transfers
       parameters:

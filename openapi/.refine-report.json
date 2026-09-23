@@ -1,26 +1,12 @@
 {
   "provider": "natural-ai",
   "sources": [
-    "natural-ai-agent-keys-api-openapi.yml",
-    "natural-ai-agents-api-openapi.yml",
-    "natural-ai-api-keys-api-openapi.yml",
-    "natural-ai-approvals-api-openapi.yml",
-    "natural-ai-customers-api-openapi.yml",
-    "natural-ai-events-api-openapi.yml",
-    "natural-ai-external-accounts-api-openapi.yml",
-    "natural-ai-invitations-api-openapi.yml",
-    "natural-ai-parties-api-openapi.yml",
-    "natural-ai-paymentrequests-api-openapi.yml",
-    "natural-ai-payments-api-openapi.yml",
-    "natural-ai-transactions-api-openapi.yml",
-    "natural-ai-transfers-api-openapi.yml",
-    "natural-ai-wallets-api-openapi.yml",
-    "natural-ai-webhooks-api-openapi.yml"
+    "_original/natural-ai-openapi-original.json"
   ],
   "outputs": [
+    "natural-ai-api-keys-api-openapi.yml",
     "natural-ai-agent-keys-api-openapi.yml",
     "natural-ai-agents-api-openapi.yml",
-    "natural-ai-api-keys-api-openapi.yml",
     "natural-ai-approvals-api-openapi.yml",
     "natural-ai-customers-api-openapi.yml",
     "natural-ai-events-api-openapi.yml",
@@ -34,9 +20,32 @@
     "natural-ai-wallets-api-openapi.yml",
     "natural-ai-webhooks-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "natural-ai-openapi-original.json: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "superseded outputs removed: natural-ai-payment-requests-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 15 total)"
+  ],
+  "skipped": [
+    "natural-ai-agent-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-approvals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-external-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-invitations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-parties-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-payment-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-transfers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-wallets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "natural-ai-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
