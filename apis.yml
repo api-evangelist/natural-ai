@@ -230,6 +230,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/natural-ai-capability-edges.yml
+  name: Natural AI Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/natural-ai/overview
 - type: Website
