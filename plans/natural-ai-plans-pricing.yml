@@ -1,0 +1,80 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.natural.com/pricing
+sources:
+- https://www.natural.com/pricing
+- https://natural.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: ad-valorem
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Product-by-product fee matrix across Consumer/Business/Enterprise tiers; many Enterprise entries
+  are 'Contact us'. Several products marked 'Soon'.
+plan_count: 12
+currency: USD
+plans:
+- name: Wallets
+  price_text: Free
+  period: none
+  included_quota: Consumer / Business / Enterprise all Free
+- name: Vault
+  price_text: Free
+  period: none
+  included_quota: Consumer / Business / Enterprise all Free
+- name: Pay (Business)
+  price_text: 0.1% or 10 bps
+  period: per-use
+  unit: transaction
+  included_quota: Consumer Free; Enterprise Contact us
+- name: Request (Business)
+  price_text: 0.1% or 10 bps
+  period: per-use
+  unit: transaction
+  included_quota: Consumer Free; Enterprise Contact us
+- name: Transfer Instant
+  price_text: 1.5%
+  price: 1.5
+  period: per-use
+  unit: transfer
+  included_quota: Standard Free
+- name: Accept (Business)
+  price_text: 2.9% + 30¢
+  currency: USD
+  period: per-use
+  unit: transaction
+  included_quota: Standard; MOR Contact us
+- name: Cards
+  price_text: Free
+  period: none
+- name: Credit (Business)
+  price_text: 3% or 300 bps
+  period: per-use
+  unit: base
+  included_quota: Card $0
+- name: Connect
+  price_text: Free
+  period: none
+- name: Voice (Business)
+  price_text: $1K/month
+  price: 1000
+  currency: USD
+  period: month
+  unit: base
+  included_quota: Waived With Accept*
+- name: Billing (Business)
+  price_text: 0.5% or 50 bps
+  period: per-use
+  included_quota: Enterprise Contact us
+- name: Charge
+  price_text: 0.1% or 10 bps
+  period: per-use
+  unit: API call
+  included_quota: Consumer and Business; Enterprise Contact us
