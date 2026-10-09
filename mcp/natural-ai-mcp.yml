@@ -81,3 +81,20 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://mcp.natural.com
+  metadata_url: https://mcp.natural.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.natural.com
+    authorization_servers:
+    - https://api.natural.com
+    scopes_supported:
+    - payments:move
+    - external-accounts:link
+    - payments:direct
+    - agents:operate
+    - customers:invite
