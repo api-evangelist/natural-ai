@@ -64,6 +64,184 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Natural AI is a company surfaced as a portfolio company of forerunner-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+Natural (natural.com) is the agentic payments platform: one API for AI agents, apps, and businesses to send, receive, and manage money. Agents get FDIC-insured wallets, credit lines, and the ability to pay or request funds by email, phone, @handle, party, or agent ID, plus card issuing, merchant acceptance, and PCI-compliant voice payments. The REST API (api.natural.com, Bearer auth, JSON:API envelope) is complemented by first-party Python and TypeScript SDKs, a `natural` CLI, and a hosted Model Context Protocol server at mcp.natural.com exposing 24 intent-shaped tools with OAuth 2.1 + PKCE. Natural was surfaced as a portfolio company of Forerunner Ventures and enriched into the API Evangelist network.
 
-Backed by: forerunner-ventures — https://www.natural.co
+**Areas:** Company · Artificial Intelligence · Payments · Agents · Fintech · Money Movement · Wallets · Agentic Payments · MCP
+
+## Natural AI on APIs.io
+
+Everything profiled for Natural AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/natural-ai/](https://apis.io/providers/natural-ai/)** — or go straight to one of the APIs or properties below.
+
+### APIs (15)
+
+- [Natural AI Agent Keys API](https://apis.io/apis/natural-ai/natural-ai-agent-keys-api/) — Agent key management
+- [Natural AI Agents API](https://apis.io/apis/natural-ai/natural-ai-agents-api/) — Agent management
+- [Natural AI API Keys API](https://apis.io/apis/natural-ai/natural-ai-api-keys-api/) — API key management
+- [Natural AI Approvals API](https://apis.io/apis/natural-ai/natural-ai-approvals-api/) — Approval review
+- [Natural AI Customers API](https://apis.io/apis/natural-ai/natural-ai-customers-api/) — Customer management
+- [Natural AI Events API](https://apis.io/apis/natural-ai/natural-ai-events-api/) — Webhook event log
+- [Natural AI External Accounts API](https://apis.io/apis/natural-ai/natural-ai-external-accounts-api/) — Linked external bank accounts
+- [Natural AI Invitations API](https://apis.io/apis/natural-ai/natural-ai-invitations-api/) — Party invitation management
+- [Natural AI Parties API](https://apis.io/apis/natural-ai/natural-ai-parties-api/) — Party and organization management
+- [Natural AI Payments API](https://apis.io/apis/natural-ai/natural-ai-payments-api/) — Payment management
+- [Natural AI Transactions API](https://apis.io/apis/natural-ai/natural-ai-transactions-api/) — Transaction activity and history
+- [Natural AI Transfers API](https://apis.io/apis/natural-ai/natural-ai-transfers-api/) — Deposits and withdrawals
+- [Natural AI Wallets API](https://apis.io/apis/natural-ai/natural-ai-wallets-api/) — Wallet management
+- [Natural AI Webhooks API](https://apis.io/apis/natural-ai/natural-ai-webhooks-api/) — Webhook endpoint management
+- [Natural AI Payment Requests API](https://apis.io/apis/natural-ai/natural-ai-payment-requests-api/) — Payment request management
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Natural Ai Webhooks](https://apis.io/asyncapis/natural-ai/natural-ai-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [natural](https://apis.io/servers/natural-ai/natural/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Natural Ai Agentic Access](https://apis.io/agentic-access/natural-ai/natural-ai-agentic-access/)
+
+#### Collections (30)
+
+Postman and Open Collection request collections.
+
+- [Natural Agent Keys API](https://apis.io/collections/natural-ai/open-natural-ai-agent-keys-api/)
+- [Natural Agent Keys Agents API](https://apis.io/collections/natural-ai/open-natural-ai-agents-api/)
+- [Natural Agent Keys API Keys API](https://apis.io/collections/natural-ai/open-natural-ai-api-keys-api/)
+- [Natural Agent Keys Approvals API](https://apis.io/collections/natural-ai/open-natural-ai-approvals-api/)
+- [Natural Agent Keys Customers API](https://apis.io/collections/natural-ai/open-natural-ai-customers-api/)
+- [Natural Agent Keys Events API](https://apis.io/collections/natural-ai/open-natural-ai-events-api/)
+- [Natural Agent Keys External Accounts API](https://apis.io/collections/natural-ai/open-natural-ai-external-accounts-api/)
+- [Natural Agent Keys Invitations API](https://apis.io/collections/natural-ai/open-natural-ai-invitations-api/)
+- [Natural Agent Keys Parties API](https://apis.io/collections/natural-ai/open-natural-ai-parties-api/)
+- [Natural Agent Keys PaymentRequests API](https://apis.io/collections/natural-ai/open-natural-ai-paymentrequests-api/)
+- [Natural Agent Keys Payments API](https://apis.io/collections/natural-ai/open-natural-ai-payments-api/)
+- [Natural Agent Keys Transactions API](https://apis.io/collections/natural-ai/open-natural-ai-transactions-api/)
+- [Natural Agent Keys Transfers API](https://apis.io/collections/natural-ai/open-natural-ai-transfers-api/)
+- [Natural Agent Keys Wallets API](https://apis.io/collections/natural-ai/open-natural-ai-wallets-api/)
+- [Natural Agent Keys Webhooks API](https://apis.io/collections/natural-ai/open-natural-ai-webhooks-api/)
+- [Natural Agent Keys API](https://apis.io/collections/natural-ai/postman-natural-ai-agent-keys-api/)
+- [Natural Agent Keys Agents API](https://apis.io/collections/natural-ai/postman-natural-ai-agents-api/)
+- [Natural Agent Keys API Keys API](https://apis.io/collections/natural-ai/postman-natural-ai-api-keys-api/)
+- [Natural Agent Keys Approvals API](https://apis.io/collections/natural-ai/postman-natural-ai-approvals-api/)
+- [Natural Agent Keys Customers API](https://apis.io/collections/natural-ai/postman-natural-ai-customers-api/)
+- [Natural Agent Keys Events API](https://apis.io/collections/natural-ai/postman-natural-ai-events-api/)
+- [Natural Agent Keys External Accounts API](https://apis.io/collections/natural-ai/postman-natural-ai-external-accounts-api/)
+- [Natural Agent Keys Invitations API](https://apis.io/collections/natural-ai/postman-natural-ai-invitations-api/)
+- [Natural Agent Keys Parties API](https://apis.io/collections/natural-ai/postman-natural-ai-parties-api/)
+- [Natural Agent Keys PaymentRequests API](https://apis.io/collections/natural-ai/postman-natural-ai-paymentrequests-api/)
+- …and 5 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Natural Ai Openapi Overlay](https://apis.io/overlays/natural-ai/natural-ai-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Natural Ai Authentication](https://apis.io/security/natural-ai/natural-ai-authentication/)
+- [Natural Ai Domain Security](https://apis.io/security/natural-ai/natural-ai-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Natural Ai Scopes](https://apis.io/scopes/natural-ai/natural-ai-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Natural Ai Plans Pricing](https://apis.io/plans/natural-ai/natural-ai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Natural Ai Rate Limits](https://apis.io/rate-limits/natural-ai/natural-ai-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.natural.com)
+- [Documentation](https://docs.natural.com/guides/overview/start-here)
+- [Getting started](https://docs.natural.com/guides/overview/start-here)
+- [API reference](https://docs.natural.com/api-reference/about)
+- [Pricing](https://natural.com/pricing)
+- [Sign up](https://natural.com/signup)
+- [Blog](https://www.natural.com/blog)
+- [Compliance](https://docs.natural.com/guides/overview/security)
+- [Terms of service](https://www.natural.com/nsa)
+- [Privacy policy](https://www.natural.com/privacy)
+- [GitHub](https://github.com/naturalpay)
+- [Status](https://status.natural.com)
+
+## API Evangelist rating
+
+**Kin Score 65.1** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 58.9 |
+| Contract governance | 18.2 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 75.0 |
+| Access clarity | 84.2 |
+
+**Agent readiness 71.0** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | verified |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 40.0** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/natural-ai/](https://apis.io/providers/natural-ai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Natural AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/natural-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
